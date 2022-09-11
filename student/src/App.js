@@ -13,21 +13,22 @@ function App() {
   return (
     <Routes>
       {user &&
-      <Route path="/" exact element={<Main />} >
+      <Route path="/" exact element={<Main />} >  
+        <Route path="contracts/" element={<MyContracts />} />
         <Route path="new-contract/" element={<CreateContract />} />
         <Route path="contractSummary/" element={<ContractSummary />} />
         <Route path="checkins/" element={<CheckinList />} />
         <Route path="new-checkin/" element={<NewCheckin />} />
       </Route>
       }
-      <Route path="signup" exact element={<Signup />} />
-      <Route path="login" exact element={<Login />} /> 
-      <Route path="/" exact element={<Navigate replace to="/login" />} />
-      <Route path="/contracts" exact element={<Navigate replace to="/login" />} />
-      <Route path="/checkins" exact element={<Navigate replace to="/login" />} />
-      <Route path="/new-contract" exact element={<Navigate replace to="/login" />} />
-      <Route path="/contractSummary" exact element={<Navigate replace to="/login" />} />
-      <Route path="/new-checkin" exact element={<Navigate replace to="/login" />} />
+        <Route path="signup" exact element={<Signup />} />
+        <Route path="login" exact element={<Login />} /> 
+        <Route path="/" exact element={<Navigate replace to="/login" />} />
+        <Route path="/contracts" exact element={<Navigate replace to="/login" />} />
+        <Route path="/checkins" exact element={<Navigate replace to="/login" />} />
+        <Route path="/new-contract" exact element={<Navigate replace to="/login" />} />
+        <Route path="/contractSummary" exact element={<Navigate replace to="/login" />} />
+        <Route path="/new-checkin" exact element={<Navigate replace to="/login" />} />
       </Routes>
   );
 }

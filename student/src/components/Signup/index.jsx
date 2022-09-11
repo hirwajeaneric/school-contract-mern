@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link, useNavigate} from 'react-router-dom';
 import styles from './styles.module.css';
 import { useState } from 'react';
+import backgroundImage from '../../Assets/Img/20.auca.jpg';
 
 const Signup = () => {
     const [data, setData] = useState({
@@ -41,13 +42,7 @@ const Signup = () => {
     return (
         <div className={styles.signup_container}>
             <div className={styles.signup_form_container}>
-                <div className={styles.left}>
-                    <h1>Welcome Back</h1>
-                    <Link to='/login'>
-                        <button type='button' className={styles.white_btn}>Sign In</button>
-                    </Link>
-                </div>
-                <div className={styles.right}>
+                <div className={styles.top}>
                     <form className={styles.form_container} onSubmit={handleSubmit}>
                         <h1>Create Account</h1>
                         <input 
@@ -97,6 +92,9 @@ const Signup = () => {
                         />
                         { error && <div className={styles.error_msg}>{error}</div> }
                         <button type='submit' className={styles.green_btn}>Sign Up</button>
+                        <div className={styles.bottom}>
+                            <span className="already_have_account">Already have an account? <Link to='/login' className={styles.links}>Sign In</Link></span>
+                        </div>
                     </form>
                 </div>
             </div>

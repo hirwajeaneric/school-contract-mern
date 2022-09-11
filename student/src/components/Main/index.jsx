@@ -1,4 +1,5 @@
 import React from 'react'
+import { Outlet } from 'react-router-dom';
 import MyContracts from '../MyContracts';
 import SideNavBar from '../SideNavBar';
 import TopBar from '../TopBar';
@@ -8,7 +9,8 @@ const Main = () => {
     return (
         <div className={styles.main_container}>
             <TopBar />    
-            <MyContracts />  
+            {/* <MyContracts /> */}
+            <Outlet />  
             <SideNavBar />
         </div>
     )
