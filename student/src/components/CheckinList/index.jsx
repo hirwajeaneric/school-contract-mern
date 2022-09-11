@@ -3,7 +3,9 @@ import styles from './styles.module.css';
 
 const CheckinList = () => {
   return (
-    <div>CheckinList</div>
+    <div className={styles.checkin_container}>
+      CheckinList
+    </div>
   )
 }
 

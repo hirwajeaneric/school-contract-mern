@@ -12,16 +12,23 @@ function App() {
   const user = localStorage.getItem('token')
   return (
     <Routes>
-      {user && <Route path="/" exact element={<Main />} />}
-      <Route path="/signup" exact element={<Signup />} />
-      <Route path="/login" exact element={<Login />} />
+      {user &&
+      <Route path="/" exact element={<Main />} >
+        <Route path="new-contract/" element={<CreateContract />} />
+        <Route path="contractSummary/" element={<ContractSummary />} />
+        <Route path="checkins/" element={<CheckinList />} />
+        <Route path="new-checkin/" element={<NewCheckin />} />
+      </Route>
+      }
+      <Route path="signup" exact element={<Signup />} />
+      <Route path="login" exact element={<Login />} /> 
       <Route path="/" exact element={<Navigate replace to="/login" />} />
-      <Route path="/contracts" exact element={<MyContracts />} />
-      <Route path="/checkins" exact element={<CheckinList />} />
-      <Route path="/checkin/new" exact element={<NewCheckin />} />
-      <Route path="/contract/new" exact element={<CreateContract />} />
-      <Route path="/contractSummary" exact element={<ContractSummary />} />
-    </Routes>
+      <Route path="/contracts" exact element={<Navigate replace to="/login" />} />
+      <Route path="/checkins" exact element={<Navigate replace to="/login" />} />
+      <Route path="/new-contract" exact element={<Navigate replace to="/login" />} />
+      <Route path="/contractSummary" exact element={<Navigate replace to="/login" />} />
+      <Route path="/new-checkin" exact element={<Navigate replace to="/login" />} />
+      </Routes>
   );
 }
 
