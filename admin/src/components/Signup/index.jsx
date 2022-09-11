@@ -6,10 +6,9 @@ import { useState } from 'react';
 
 const Signup = () => {
     const [data, setData] = useState({
-        regNumber:"",
-        name: "",
+        firstname:"",
+        lastname: "",
         email: "",
-        sponsorEmail:"",
         password:""
     });
 
@@ -23,7 +22,7 @@ const Signup = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const url = "http://localhost:8080/api/users";
+            const url = "http://localhost:8080/admin/signup";
             const { data: res } = await axios.post(url, data);
             navigate('/login');
             console.log(res.message);
@@ -53,19 +52,19 @@ const Signup = () => {
                         <input 
                             type="text" 
                             className={styles.input} 
-                            placeholder="Registration Number"
-                            name='regNumber'
+                            placeholder="First Name"
+                            name='firstname'
                             onChange={handleChange}
-                            value={data.regNumber} 
+                            value={data.firstname} 
                             required   
                         />
                         <input 
                             type="text" 
                             className={styles.input} 
-                            placeholder="Name"
-                            name='name'
+                            placeholder="Last Name"
+                            name='lastname'
                             onChange={handleChange}
-                            value={data.name} 
+                            value={data.lastname} 
                             required   
                         />
                         <input 
@@ -75,15 +74,6 @@ const Signup = () => {
                             name='email'
                             onChange={handleChange}
                             value={data.email} 
-                            required   
-                        />
-                        <input 
-                            type="text" 
-                            className={styles.input} 
-                            placeholder="Sponsor Email"
-                            name='sponsorEmail'
-                            onChange={handleChange}
-                            value={data.sponsorEmail} 
                             required   
                         />
                         <input 
