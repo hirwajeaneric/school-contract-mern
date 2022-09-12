@@ -40,6 +40,10 @@ const Login = () => {
         <div className={styles.login_container}>
             <div className={styles.login_form_container}>
                 <div className={styles.left}>
+                    <div className={styles.auca_logo}></div>
+                    <h1>AUCA CONTRACT</h1>
+                </div>
+                <div className={styles.right}>
                     <form className={styles.form_container} onSubmit={handleSubmit}>
                         <h1>Login to Your Account</h1>
                         <input 
@@ -62,13 +66,10 @@ const Login = () => {
                         />
                         { error && <div className={styles.error_msg}>{error}</div> }
                         <button type='submit' className={styles.green_btn}>Sign In</button>
-                    </form>    
-                </div>
-                <div className={styles.right}>
-                    <h1>New Here?</h1>
-                    <Link to='/signup'>
-                        <button type='button' className={styles.white_btn}>Sign Up</button>
-                    </Link>
+                    </form>
+                    <div className={styles.bottom}>
+                        <span className='already_have_account'>New Here? <Link to='/signup' className={styles.links}>Sign Up</Link></span>
+                    </div>    
                 </div>
             </div>
         </div>

@@ -1,19 +1,28 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom';
-import MyContracts from '../MyContracts';
-import SideNavBar from '../SideNavBar';
-import TopBar from '../TopBar';
-import styles from './styles.module.css';
+import NotificationBar from './NotificationBar';
+import SideNavBar from './SideNavBar';
+import TopBar from './TopBar';
+import './styles.css';
 
 const Main = () => {
-    return (
-        <div className={styles.main_container}>
-            <TopBar />    
-            {/* <MyContracts /> */}
-            <Outlet />  
-            <SideNavBar />
-        </div>
-    )
+  return (
+    <div className='grid-container'>
+      <div id='item1'>
+        <TopBar/>
+      </div>
+      <div id='item2'>
+        <SideNavBar />
+      </div>
+      <div id='item3'>
+        <Outlet />
+      </div>
+      <div id='item4'>
+        <NotificationBar />
+      </div>
+      <div id='item5'></div>
+    </div>
+  )
 }
 
 export default Main
