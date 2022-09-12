@@ -6,7 +6,7 @@ import { useState } from 'react';
 
 const Login = () => {
     const [data, setData] = useState({
-        regNumber:"",
+        email:"",
         password:""
     });
 
@@ -19,7 +19,7 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const url = "http://localhost:8080/api/auth";
+            const url = "http://localhost:8080/admin/login";
             const { data: res } = await axios.post(url, data);
             localStorage.setItem('token', res.data);
             window.location = "/"
@@ -43,10 +43,10 @@ const Login = () => {
                         <input 
                             type="text" 
                             className={styles.input} 
-                            placeholder="Registration Number"
-                            name='regNumber'
+                            placeholder="Email"
+                            name='email'
                             onChange={handleChange}
-                            value={data.regNumber} 
+                            value={data.email} 
                             required   
                         />
                         <input 

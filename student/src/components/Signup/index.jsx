@@ -23,7 +23,7 @@ const Signup = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const url = "http://localhost:8080/api/users";
+            const url = "http://localhost:8080/student/signup";
             const { data: res } = await axios.post(url, data);
             navigate('/login');
             console.log(res.message);
@@ -42,10 +42,8 @@ const Signup = () => {
         <div className={styles.signup_container}>
             <div className={styles.signup_form_container}>
                 <div className={styles.left}>
-                    <h1>Welcome Back</h1>
-                    <Link to='/login'>
-                        <button type='button' className={styles.white_btn}>Sign In</button>
-                    </Link>
+                    <div className={styles.auca_logo}></div>
+                    <h1>AUCA CONTRACT</h1>
                 </div>
                 <div className={styles.right}>
                     <form className={styles.form_container} onSubmit={handleSubmit}>
@@ -97,6 +95,9 @@ const Signup = () => {
                         />
                         { error && <div className={styles.error_msg}>{error}</div> }
                         <button type='submit' className={styles.green_btn}>Sign Up</button>
+                        <div className={styles.bottom}>
+                            <span className="already_have_account">Already have an account? <Link to='/login' className={styles.links}>Sign In</Link></span>
+                        </div>
                     </form>
                 </div>
             </div>

@@ -1,20 +1,28 @@
 import React from 'react'
-import styles from './styles.module.css';
+import { Outlet } from 'react-router-dom';
+import NotificationBar from './NotificationBar';
+import SideNavBar from './SideNavBar';
+import TopBar from './TopBar';
+import './styles.css';
 
 const Main = () => {
-    const handleLogout = ()=>{
-        localStorage.removeItem("token");
-        window.location.reload();
-    }
-
-    return (
-        <div className={styles.main_container}>
-            <nav className={styles.navbar}>
-                <h1>Auca Contract</h1>
-                <button className={styles.white_btn} onClick={handleLogout}>Logout</button>
-            </nav>
-        </div>
-    )
+  return (
+    <div className='grid-container'>
+      <div id='item1'>
+        <TopBar/>
+      </div>
+      <div id='item2'>
+        <SideNavBar />
+      </div>
+      <div id='item3'>
+        <Outlet />
+      </div>
+      <div id='item4'>
+        <NotificationBar />
+      </div>
+      <div id='item5'></div>
+    </div>
+  )
 }
 
 export default Main
