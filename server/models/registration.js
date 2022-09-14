@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 const registrationSchema = new mongoose.Schema({
     regNumber: {type: String, required: true},
     name: {type: String, required: true},
-    paidAmount:{type: mongoose.Types.Decimal128, required: true}
+    dueAmount:{type: mongoose.Types.Decimal128, required: true},
+    numberOfCourses:{type: String, required: true}
 })
 
 const Registration = mongoose.model('registration', registrationSchema);
