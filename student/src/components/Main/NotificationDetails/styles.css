@@ -1,0 +1,23 @@
+.notification_container {
+	padding: 20px 40px;
+}
+ 
+.ntitlebar {
+	display: flex;
+	flex-direction: row;
+	align-items: flex-start;
+	width: 100%;
+	justify-content: flex-start;
+}
+
+.ntitleText {
+	font-weight: 900;
+}
+
+.the-message {
+
+}
+
+.date-of-the-message {
+	text-align: left;
+}

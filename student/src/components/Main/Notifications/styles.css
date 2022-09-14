@@ -1,4 +1,84 @@
-.notification_bar_container {
-    background-color: rgb(192, 192, 192);
-    height: 100%;
+.notification_container {
+	padding: 20px 40px;
 }
+ 
+.listofcontracts,
+.titlebar {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.titlebar {
+	width: 100%;
+	justify-content: space-between;
+}
+
+.titleText {
+	font-weight: 900;
+}
+
+.success_message_box {
+	margin: 10px 0;
+}
+
+.success_msg {
+	width: 100%;
+	padding: 5px;
+	margin: 5px 0 10px;
+	font-size: 14px;
+	/* background-color: #f34646; */
+	background-color: #90ff9a;
+	border: 1px solid rgb(42, 184, 68);
+	color: rgb(37, 159, 60);
+	/* color: #f34646; */
+	border-radius: 5px;
+	text-align: center;
+}
+
+
+.acheckin {
+	padding: 10px;
+	background-color: white;
+	color: black;
+	margin-bottom: 20px;
+	font-size: 90%;
+}
+
+.table-container {
+	margin-top: 20px;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+.table {
+	width: 100%;
+	border-collapse: collapse;
+    font-size: 80%;
+}
+
+.tr:nth-child(even) {background-color: #f2f2f2;}
+
+th,td {
+	font-size: 90%;
+}
+
+td, th {
+	padding: 5px 10px;
+	text-align: left;
+}
+
+th {
+	background-color: black;
+	color: white;
+}
+
+.read-more {
+    font-size: 70%;
+    text-decoration: none;
+    color: green;
+}
+
+
+
