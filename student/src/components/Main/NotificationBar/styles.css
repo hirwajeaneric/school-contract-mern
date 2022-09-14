@@ -1,0 +1,32 @@
+.a-notification {
+    margin: 10px 0;
+}
+
+.notification-message {
+    font-size: 90%;
+    margin: 0;
+}
+
+/* .title-area {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+} */
+
+.time {
+    font-size: 80%;
+    color: gray;
+    margin: 0;
+}
+
+.more-space {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    justify-content: center;
+}
+
+.more-link {
+    text-decoration: none;
+    color: blue;
+}

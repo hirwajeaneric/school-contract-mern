@@ -6,25 +6,27 @@ router.get('/list', (req, res)=>{
         if(err)
             res.status(401).send({message: "You don't have contracts yet. Create one."});
         else    
-            res.status(200).send({numberOfContracts: response.length, contracts: response});
+            // res.status(200).send({numberOfContracts: response.length, contracts: response});
+            res.status(200).send(response);
     });
 });
 
 router.post('/add', async(req, res)=>{
     try {
-        const {error} = validate(req.body);
-        if(error)
-            return res.status(400).send({message: error.details[0].message})
+        const {errors} = validate(req.body);
+        if(errors)
+            return res.status(400).send({message: errors.details[0].message})
+            // return res.status(400).send({message: "Just Validation Errors"})
 
         const contract = await Contract.findOne({regNumber: req.body.regNumber, status: "Pending"});
         if(contract)
             return res.status(409).send({ message: "Not allowed to create a new contract. You have a pending contract."})
         
-        await new Contract().save();
+        await new Contract(req.body).save();
         res.status(201).send({message: "Contract created"});
 
     } catch (error) {
-        res.status(500).send({message: "Internal Server Error"});
+        res.status(500).send({message: "Internal Server Error : "+error});
     }
 });
 
@@ -53,13 +55,13 @@ router.get('/searchById', (req, res)=>{
     });
 });
 
-router.get('/searchByRegistrationNumber', (req, res)=>{
-    const registrationNumberQuery = req.query.regNumber;
+router.get('/searchByRegistrationNumber/:regNumber', (req, res)=>{
+    const registrationNumberQuery = req.params.regNumber;
     Contract.find({regNumber: registrationNumberQuery}, (err, response) => {
         if(err)
             res.status(401).send({message: err});
         else    
-            res.status(200).send({numberOfContracts: response.length ,contracts: response});
+            res.status(200).send(response);
     });
 });
 
