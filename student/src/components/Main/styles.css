@@ -21,6 +21,10 @@
 #item3 { 
     grid-area: item3;
     background-color: rgb(236, 236, 236);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
 }
 #item4 { 
     grid-area: item4;

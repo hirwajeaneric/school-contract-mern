@@ -16,7 +16,7 @@ function App() {
       <Route path="/" exact element={<Main />} >  
         <Route path="contracts/" element={<MyContracts />} />
         <Route path="new-contract/" element={<CreateContract />} />
-        <Route path="contractSummary/" element={<ContractSummary />} />
+        <Route path="contract-summary/" element={<ContractSummary />} />
         <Route path="checkins/" element={<CheckinList />} />
         <Route path="new-checkin/" element={<NewCheckin />} />
       </Route>
