@@ -1,5 +1,4 @@
-import { Button } from '@mui/material';
-import React from 'react'
+  import React from 'react'
 import { Link } from 'react-router-dom';
 import './styles.css';
 
@@ -37,12 +36,12 @@ const ContractSummary = () => {
         </tbody>
       </table>
       <p>
-        I <span>Belyse Mucyo</span> hereby acknowledge that as of <span>Friday, August 26, 2022</span>, I registered with the Adventist University Of Central Africa with <spa>6</spa> credits and I promise to pay the total amount of the school fees on installment payment a t the dates as specified above. <br/><br/>
+        I <span>Belyse Mucyo</span> hereby acknowledge that as of <span>Friday, August 26, 2022</span>, I registered with the Adventist University Of Central Africa with <span>6</span> credits and I promise to pay the total amount of the school fees on installment payment a t the dates as specified above. <br/><br/>
         I accept and fully understand that tuition and fees paid upon registration is not refundable on whatever reason and that 5% penalty per month on the amount due will be charged on delayed payment. 
       </p>
       <div className='buttons'>
         <Link className='summary-btn' to={'/new-contract'}>Back</Link>
-        <Button className='submit-btn' type='submit'>Submit</Button>
+        <button className='submit-btn' type='submit'>Submit</button>
       </div>
     </div>
   )

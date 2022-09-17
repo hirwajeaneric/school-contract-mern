@@ -1,0 +1,23 @@
+.contractdetails-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+}
+
+.contractdetails-space {
+    padding-top: 40px;
+}
+
+.the-date {
+    font-weight: 400;
+}
+
+.td {
+    background-color: white !important;
+}
+
+h2 {
+    margin-bottom: 30px;
+}

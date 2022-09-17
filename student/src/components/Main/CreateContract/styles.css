@@ -5,7 +5,6 @@
 	padding: 30px 40px;
 	border-radius: 10px;
 	border: 1px solid rgb(216, 216, 216);
-	/* box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.19); */
 	font-size: 90%;
 }
 
@@ -54,5 +53,8 @@ p {
 
 .input-container {
 	margin-bottom: 10px;
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: space-between;
 }
 
