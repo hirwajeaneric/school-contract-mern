@@ -1,4 +1,4 @@
-.summary-container {
+.form-container {
 	width: 90%;
 	margin-top: 40px;
 	background-color: white;
@@ -6,6 +6,10 @@
 	border-radius: 10px;
 	border: 1px solid rgb(216, 216, 216);
 	font-size: 90%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
 }
 
 .error_msg {
@@ -22,39 +26,46 @@
 	text-align: center;
 }
 
-.student-identification {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	margin: 20px 0 10px;
+tr {
+	padding: 0;
 }
 
 p {
 	margin: 20px 0;
 }
 
-.buttons {
-	display: flex;
-	flex-direction: row;
-	text-align: center;
-	justify-content: space-between;
-}
-
-.summary-btn, .cancel-btn {
-	padding: 8px 12px;
+.submit-btn, .cancel-btn {
+	padding: 8px 12px !important;
 	text-decoration: none;
 	font-size: 90%;
 }
 
-.summary-btn {
-	background-color: rgb(0, 0, 0);
-	color: white;
+input[type="text"] {
+	padding: 5px;
+	border-radius: 5px;
+	border: 1px solid rgb(197, 197, 197);
 }
 
-.input-container {
-	margin-bottom: 10px;
+label {
+	font-size: 100%;
+}
+
+.cancel-btn-container {
 	display: flex;
-	flex-wrap: nowrap;
-	justify-content: space-between;
+	flex-direction: row;
+	justify-content: flex-end;
+}
+
+.submit-btn {
+	border-radius: 0;
+	cursor: pointer;
+}
+
+.submit-btn:hover {
+	background-color: rgb(0, 100, 0);
+}
+
+.cancel-btn {
+	margin: 0;	
 }
 

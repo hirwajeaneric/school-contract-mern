@@ -25,26 +25,26 @@ router.post('/new', (req, res, next) => {
   const installment = (parseFloat(req.body.dueAmount) - parseFloat(req.body.paidAmount))/3;
   console.log(installment);
   req.body.amountPerInstallment = Math.round((installment*10)/10).toString();
-  req.body.creationDate = new Date();
+  req.body.creationDate = new Date().toDateString();
   console.log(req.body);
   next()
 }
 ,(req, res, next)=>{
     const {errors} = validate(req.body);
     if(errors)
-        return res.status(400).send({message: errors.details[0].message})
-        
-    contractModel.create(req.body)
-    .then(response=>{
-    if (response) {
-      res.status(201).send(response)
-    } else {
-      res.status(409).send("Failed to create a contract")
-    }
-  })
-  .catch(err=>{
-    res.status(500).send('Internal Server Error'+err)
-  })
+      return res.status(400).send({message: errors.details[0].message})
+    else
+      contractModel.create(req.body)
+      .then(response=>{
+      if (response) {
+        res.status(201).send(response)
+      } else {
+        res.status(409).send("Failed to create a contract")
+      }
+      })
+      .catch(err=>{
+        res.status(500).send('Internal Server Error'+err)
+      })
 })
 
 router.get('/findByRegNumber', function (req, res, next){

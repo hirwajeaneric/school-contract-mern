@@ -6,41 +6,31 @@ import './styles.css';
 function CreateContract() {
 
   const navigate = useNavigate();
-
-  const [due, setDue] = useState(0);
-  const [reg, setReg] = useState('');
-  const [names, setNames] = useState('');
-
-  const [formData, setFormData] = useState({
-    regNumber: "",
-    name:"",
-    urubutoPayCode:"",
-    dueAmount: 0.0,
-    paidAmount: 0.0,
-    amountPerInstallment: 0.0,
-    email:"",
-    sponsorEmail:"",    
-    status: "Pending",
-    creationDate: "",
-    comment: ""
-  });
-
-  useEffect(()=>{
-    const amountToBePaid = localStorage.getItem("dueAmount");
-    const studentRegistrationNumber = localStorage.getItem('id');
-    const yourName = localStorage.getItem('name');
-    
-    setDue(amountToBePaid);
-    setReg(studentRegistrationNumber);
-    setNames(yourName);
-
-    setFormData({ 
-      ...formData, 
-      dueAmount: due
-    });
-  }, [due])
-
+  const [formData, setFormData] = useState({});
   const [error, setError] = useState("");
+  
+  useEffect(()=>{
+    const presetData = {
+      regNumber: localStorage.getItem('id'),
+      name: localStorage.getItem('name'),
+      dueAmount: localStorage.getItem("dueAmount")
+    }
+
+    const contractData = {
+      urubutoPayCode:"",
+      paidAmount: 0.0,
+      amountPerInstallment: 0.0,
+      email:"",
+      sponsorEmail:"",    
+      status: "Pending",
+      creationDate: "",
+      comment: ""
+    }
+
+    var combinedFormData = Object.assign(contractData, presetData);
+
+    setFormData(combinedFormData);
+  }, [])
 
   const handleChange = ({currentTarget: input })=>{
     setFormData({...formData, [input.name]: input.value});
@@ -48,20 +38,34 @@ function CreateContract() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
+    if (formData.paidAmount === 0 || formData.paidAmount === ""){
+      setError("Paid amount is required!");
+      return;
+    } else if(formData.urubutoPayCode===""){
+      setError("The code of your payment is required!");
+      return;
+    } else if(formData.email==="" || formData.email.length < 5) {
+      setError("Your email address is required!");
+      return;
+    } else if(formData.sponsorEmail==="" || formData.sponsorEmail.length < 5) {
+      setError("Email of your sponsor is required!");
+      return;
+    } else {
+      try {
         const url = "http://localhost:8080/api/contracts/new";
         const { data: res } = await axios.post(url, formData);
         const contract = res;
-        console.log(contract);
-        navigate(`/success/id=${contract._id}`);
-    } catch (error) {
-        if(
-            error.response &&
-            error.response.status >= 400 && 
-            error.response.status <= 500
-        ){
-            setError(error.response.data.message);
-        }
+        if(contract)
+          navigate(`/success`);
+      } catch (error) {
+          if(
+              error.response &&
+              error.response.status >= 400 && 
+              error.response.status <= 500
+          ){
+              setError(error.response.data.message);
+          }
+      }
     }
 }
 
@@ -69,82 +73,90 @@ function CreateContract() {
     <div className='form-container'>
       <h1>Create a contract</h1>
       <form className='create-form' onSubmit={handleSubmit}>
-      <div className='input-container'>
-          <label>Name</label>
-          <input 
-            type={"text"} 
-            name="name" 
-            value={formData.name} 
-            placeholder="Your Name" 
-            onChange={handleChange}
-          />
-        </div>
-        <div className='input-container'>
-          <label>RegNumber</label>
-          <input 
-            type={"text"} 
-            name="regNumber" 
-            value={formData.regNumber} 
-            placeholder="Registration Number" 
-            onChange={handleChange}
-          />
-        </div>
-        <div className='input-container'>
-          <label>Due Amount</label>
-          <input 
-            type={"text"} 
-            name="dueAmount" 
-            value={formData.dueAmount} 
-            placeholder="Amount Due" 
-            onChange={handleChange}
-          />
-        </div>
-        <div className='input-container'>
-          <label>Paid Amount</label>
-          <input 
-          type={"text"} 
-          name="paidAmount" 
-          value={formData.paidAmount} 
-          placeholder="Amount Paid" 
-          onChange={handleChange}
-        />
-        </div>
-        <div className='input-container'>
-          <label>Urubuto Pay Code</label>
-          <input type={"text"} 
-          name="urubutoPayCode" 
-          value={formData.urubutoPayCode} 
-          placeholder="Urubuto Payment Code" 
-          onChange={handleChange}
-        />
-        </div>
-        <div className='input-container'>
-          <label>Your Email</label>
-          <input 
-          type={"text"} 
-          name="email" 
-          value={formData.email} 
-          placeholder="Email Address" 
-          onChange={handleChange}
-        />
-        </div>
-        <div className='input-container'>
-          <label>Sponsor's Email</label>
-          <input 
-          type={"text"} 
-          name="sponsorEmail" 
-          value={formData.sponsorEmail} 
-          placeholder="Sponsor's Email Address" 
-          onChange={handleChange}
-        />
-        </div>
         <div className='error-message-box'>
           { error && <div className='error_msg'>{error}</div> }
         </div>
-        <div className='buttons'>
-          <button type='submit' className='summary-btn'>Submit</button>
-          <Link className='cancel-btn' to={'/contracts'}>Cancel</Link>
-        </div>
+        <table>
+        <tbody>
+          <tr>
+            <td>
+              <label>Due Amount</label>
+            </td>
+            <td>
+              <input 
+                type={"text"} 
+                name="dueAmount" 
+                value={formData.dueAmount} 
+                placeholder="Amount Due" 
+                onChange={handleChange}
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label>Paid Amount</label>
+            </td>
+            <td>
+              <input 
+                type={"text"} 
+                name="paidAmount" 
+                value={formData.paidAmount} 
+                placeholder="Amount Paid" 
+                onChange={handleChange}
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label>Urubuto Pay Code</label>
+            </td>
+            <td>
+              <input type={"text"} 
+                name="urubutoPayCode" 
+                value={formData.urubutoPayCode} 
+                placeholder="Urubuto Payment Code" 
+                onChange={handleChange}
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label>Your Email</label>
+            </td>
+            <td>
+              <input 
+                type={"text"} 
+                name="email" 
+                value={formData.email} 
+                placeholder="Email Address" 
+                onChange={handleChange}
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label>Sponsor's Email</label>
+            </td>
+            <td>
+              <input 
+                type={"text"} 
+                name="sponsorEmail" 
+                value={formData.sponsorEmail} 
+                placeholder="Sponsor's Email Address" 
+                onChange={handleChange}
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <button type='submit' className='submit-btn'>Submit</button>
+            </td>
+            <td className='cancel-btn-container'>
+              <Link className='cancel-btn' to={'/contracts'}>Cancel</Link>
+            </td>
+          </tr>
+          </tbody>
+        </table>
       </form>
     </div>
   )
