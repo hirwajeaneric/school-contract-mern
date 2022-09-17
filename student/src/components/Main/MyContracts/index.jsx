@@ -5,21 +5,21 @@ import axios from 'axios';
 import { useState } from 'react';
 
 const MyContracts = ()=> {
-  const [errors, setErrors] = useState("");
-  const [yourContracts, setYourContracts] = useState([]);
+  const [contracts, setContracts] = useState([])
+  const [errors, setErrors] = useState("")
 
   useEffect(()=>{
-    const URL ="http://localhost:8080/api/contracts/searchByRegistrationNumber/";
-    const yourRegNumber = localStorage.getItem('id');
-  
-    axios.get(URL+""+yourRegNumber)
-    .then(response=>{
-      const contractData = response.data;
-      setYourContracts({...yourContracts, contractData});
+    const regNo = localStorage.getItem("id");
+    console.log(regNo);
+    axios.get(`http://localhost:8080/api/contracts/findByRegNumber?regNumber=${regNo}`)
+    .then((res) => {
+      console.log(res.data);
+      setContracts(res.data)
     })
-    .catch(error => {setErrors(...errors, error)})
-    console.log(yourContracts);
-  },[yourContracts, errors])
+    .catch(error => {
+      setErrors(error)
+    })
+  },[]);
 
   return (
     <div className="contracts_container">
@@ -40,21 +40,25 @@ const MyContracts = ()=> {
                 <th>Amount Per Installment</th>
                 <th>Urubuto Pay Code</th>
                 <th>Status</th>
+                <th>Actions</th>
             </tr>
           </thead>
           <tbody>
-            {/* { yourContracts.map(contract =>{
-              return (
-                <ul key={contract.id}>
-                  <li>{contract.creationDate}</li>
-                  <li>{contract.dueAmount}</li>
-                  <li>{contract.paidAmount}</li>
-                  <li>{contract.amountPerInstallment}</li>
-                  <li>{contract.urubutoPayCode}</li>
-                  <li>{contract.status}</li>    
-                </ul>
-              )
-            })} */}
+            {
+              contracts ? contracts.map(contract=>(
+                <tr key={contract._id}>
+                  <td>{contract.creationDate}</td>
+                  <td>{contract.dueAmount}</td>
+                  <td>{contract.paidAmount}</td>
+                  <td>{contract.amountPerInstallment}</td>
+                  <td>{contract.urubutoPayCode}</td>
+                  <td>{contract.status}</td>
+                  <td>
+                    <Link to={`/contract/${contract._id}`}>View</Link>
+                  </td>
+                </tr>
+              )): errors
+            }
           </tbody>
         </table>
       </div>
