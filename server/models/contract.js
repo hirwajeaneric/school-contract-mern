@@ -35,7 +35,7 @@ const ContractSchema = new mongoose.Schema({
         required: true
     },
     creationDate: {
-        type: Date,
+        type: String,
         required: true
     },
     comment: {

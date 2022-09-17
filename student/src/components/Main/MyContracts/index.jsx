@@ -54,7 +54,7 @@ const MyContracts = ()=> {
                   <td>{contract.urubutoPayCode}</td>
                   <td>{contract.status}</td>
                   <td>
-                    <Link to={`/contract/${contract._id}`}>View</Link>
+                    <Link to={`/contract/${contract._id}`} className="view-link">Details</Link>
                   </td>
                 </tr>
               )): errors
