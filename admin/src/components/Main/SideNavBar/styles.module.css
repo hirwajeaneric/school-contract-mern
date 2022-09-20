@@ -1,0 +1,29 @@
+.navigation_container,
+.navigation_links {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	align-items: center;
+}
+
+.navigation_container {
+    justify-content: flex-start;
+	background-color: white;
+	height: 100%;
+	border-right: 1px solid rgb(186, 186, 186);
+	left: 0;
+	padding-top: 50px;
+
+}
+
+.link {
+    text-align: left;
+    text-decoration: none;
+	color: #002a61;
+	display: block;
+	padding: 8px 12px;
+}
+
+.link:hover {
+	border-bottom: 2px solid orange;
+}

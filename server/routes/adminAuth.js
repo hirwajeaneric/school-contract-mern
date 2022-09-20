@@ -11,7 +11,7 @@ router.post('/', async(req, res)=> {
             return res.status(400).send({message:error.details[0].message})
 
         //Here we are going to fetch a admin with the regNumber entered.    
-        const admin = await Admin.findOne({email: req.body.email});
+        const admin = await Admin.findOne({username: req.body.username});
         //If we do not find the entered admin, we give an error message.
         if(!admin)
             return res.status(401).send({message: "Invalid Email or Password"})
@@ -36,7 +36,7 @@ router.post('/', async(req, res)=> {
 //This method uses JOI to make validations
 const validate = (data) => {
     const schema = Joi.object({
-        email: Joi.string().email().required().label('Email'),
+        username: Joi.string().required().label('User name'),
         password: Joi.string().required().label('Password')
     })
     return schema.validate(data)
