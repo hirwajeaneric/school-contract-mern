@@ -15,7 +15,7 @@ function App() {
       {user &&
       <Route path="/" exact element={<Main />} >  
         <Route  path="contracts/" element={<ListOfContracts />} />
-        <Route path="update-contract/" element={<UpdateContract />} />
+        <Route path="update-contract/:id" element={<UpdateContract />} />
         <Route path="contract/:id" element={<ContractDetails />} />
         <Route path="checkins/" element={<CheckinList />} />
         <Route path="update-checkin/:id" element={<UpdateCheckin />} />
@@ -27,7 +27,7 @@ function App() {
       <Route path="/" exact element={<Navigate replace to="/login" />} />
       <Route path="/contracts" exact element={<Navigate replace to="/login" />} />
       <Route path="/checkins" exact element={<Navigate replace to="/login" />} />
-      <Route path="/update-contract" exact element={<Navigate replace to="/login" />} />
+      <Route path="/update-contract/:id" exact element={<Navigate replace to="/login" />} />
       <Route path="contract/:id" exact element={<Navigate replace to="/login" />} />
       <Route path="/update-checkin/:id" exact element={<Navigate replace to="/login" />} />
     </Routes>

@@ -17,11 +17,9 @@
 	padding: 5px;
 	margin: 5px 0 10px;
 	font-size: 14px;
-	/* background-color: #f34646; */
 	background-color: #ffd1d1;
 	border: 1px solid #f34646;
 	color: red;
-	/* color: #f34646; */
 	border-radius: 5px;
 	text-align: center;
 }
@@ -69,3 +67,16 @@ label {
 	margin: 0;	
 }
 
+.comment {
+	border: 1px solid gray;
+	border-radius: 5px;
+	padding: 5px;
+	font-size: 90%;
+	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.status-select,
+.options {
+	width: 100%;
+	padding: 3px;
+}

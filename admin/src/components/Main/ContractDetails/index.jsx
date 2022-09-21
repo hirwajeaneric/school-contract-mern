@@ -1,14 +1,15 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import './styles.css';
 
 const ContractDetails = () => {
 
   const contractId = useParams();
 
-  const [contract, setContract] = useState({})
-  const [errors, setErrors] = useState("")
+  const [contract, setContract] = useState({});
+
+  const [errors, setErrors] = useState("");
 
   useEffect(()=>{
     axios.get(`http://localhost:8080/api/contracts/findById?id=${contractId.id}`)
@@ -63,6 +64,10 @@ const ContractDetails = () => {
             <td>{contract.comment}</td>
           </tr>
         </table>
+      </div>
+      <div className="button-group">
+        <Link to={`/contracts`} className="back-link">Back</Link>
+        <Link to={`/update-contract/${contractId.id}`} className="update-contract-link">Update</Link>
       </div>
     </div>
   )
