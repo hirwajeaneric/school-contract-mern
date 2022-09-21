@@ -57,3 +57,20 @@ h2 {
 .update-contract-link:hover {
     background-color: rgb(0, 186, 0);
 }
+
+.details-table-header {
+	background-color: white;
+	color: black;
+}
+
+.details-table-data {
+	border-bottom: 1px solid black;
+}
+
+.table_values {
+	font-size: 100% !important;
+}
+
+.details-table-row {
+	padding: 0;
+}

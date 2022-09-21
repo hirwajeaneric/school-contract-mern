@@ -2,10 +2,10 @@
 	width: 90%;
 	margin-top: 40px;
 	background-color: white;
-	padding: 30px 40px;
+	padding: 30px 20px;
 	border-radius: 10px;
 	border: 1px solid rgb(216, 216, 216);
-	font-size: 90%;
+	/* font-size: 90%; */
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -24,47 +24,8 @@
 	text-align: center;
 }
 
-tr {
-	padding: 0;
-}
-
-p {
-	margin: 20px 0;
-}
-
-.submit-btn, .cancel-btn {
-	padding: 8px 12px !important;
-	text-decoration: none;
-	font-size: 90%;
-}
-
-input[type="text"] {
-	padding: 5px;
-	border-radius: 5px;
-	border: 1px solid rgb(197, 197, 197);
-}
-
 label {
 	font-size: 100%;
-}
-
-.cancel-btn-container {
-	display: flex;
-	flex-direction: row;
-	justify-content: flex-end;
-}
-
-.submit-btn {
-	border-radius: 0;
-	cursor: pointer;
-}
-
-.submit-btn:hover {
-	background-color: rgb(0, 100, 0);
-}
-
-.cancel-btn {
-	margin: 0;	
 }
 
 .comment {
@@ -79,4 +40,58 @@ label {
 .options {
 	width: 100%;
 	padding: 3px;
+}
+
+.update-button-group {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 20px;
+}
+
+.update-back-link, 
+.update-cancel-link, 
+.update-submit-btn {
+	text-decoration: none;
+	padding: 8px 12px !important;	
+}
+
+.update-submit-btn {
+	border-radius: 0;
+	cursor: pointer;
+	width: 90px;
+	margin: 0;
+}
+
+.update-submit-btn:hover {
+	background-color: rgb(0, 102, 162);
+}
+
+.update-cancel-link {
+	background-color: rgb(151, 151, 151);
+	color: black;
+}
+
+.update-cancel-link:hover {
+	background-color: rgb(223, 223, 223);
+	color: black;
+}
+
+.update-back-link {
+	background-color: black;
+	color: white;
+}
+
+.update-back-link:hover {
+	background-color: rgb(60, 60, 60);
+}
+
+.update-table-row {
+	
+}
+
+.update-values {
+	border-bottom: 1px solid gray;
 }

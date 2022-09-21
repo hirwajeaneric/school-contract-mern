@@ -39,25 +39,16 @@ function UpdateContract() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (formData.paidAmount === 0 || formData.paidAmount === ""){
-      setError("Paid amount is required!");
-      return;
-    } else if(formData.urubutoPayCode===""){
-      setError("The code of your payment is required!");
-      return;
-    } else if(formData.email==="" || formData.email.length < 5) {
-      setError("Your email address is required!");
-      return;
-    } else if(formData.sponsorEmail==="" || formData.sponsorEmail.length < 5) {
-      setError("Email of your sponsor is required!");
+    if (formData.status === "Pending"){
+      setError("Status must be updated!");
       return;
     } else {
       try {
-        const url = "http://localhost:8080/api/contracts/new";
+        const url = "http://localhost:8080/api/contracts/update";
         const { data: res } = await axios.post(url, formData);
         const contract = res;
         if(contract)
-          navigate(`/success`);
+          navigate(`/contracts`);
       } catch (error) {
           if(
               error.response &&
@@ -77,25 +68,25 @@ function UpdateContract() {
         <div className='error-message-box'>
           { error && <div className='error_msg'>{error}</div> }
         </div>
-        <table>
+        <table className='update-contract-form-table'>
           <tbody>
-            <tr>
+            <tr className='update-table-row'>
               <td><label>Due Amount</label></td>
-              <td>{formData.dueAmount}</td>
+              <td><p className="update-values">{formData.dueAmount}</p></td>
             </tr>
-            <tr>
+            <tr className='update-table-row'>
               <td><label>Paid Amount</label></td>
-              <td><td>{formData.paidAmount}</td></td>
+              <td><p className="update-values">{formData.paidAmount}</p></td>
             </tr>
-            <tr>
+            <tr className='update-table-row'>
               <td><label>Amount per installment</label></td>
-              <td><td>{formData.amountPerInstallment}</td></td>
+              <td><p className="update-values">{formData.amountPerInstallment}</p></td>
             </tr>
-            <tr>
+            <tr className='update-table-row'>
               <td><label>Urubuto Pay Code</label></td>
-              <td><td>{formData.urubutoPayCode}</td></td>
+              <td><p className="update-values">{formData.urubutoPayCode}</p></td>
             </tr>
-            <tr>
+            <tr className='update-table-row'>
               <td><label>Status</label></td>
               <td>
                 <select 
@@ -109,7 +100,7 @@ function UpdateContract() {
                 </select>
               </td>
             </tr>
-            <tr>
+            <tr className='update-table-row'>
               <td><label>Comment</label></td>
               <td>
                 <textarea 
@@ -123,10 +114,10 @@ function UpdateContract() {
             </tr>
           </tbody>
         </table>
-        <div className="button-group">
-          <button type='submit' className='submit-btn'>Submit</button>
-          <Link to={`/contract/${contractId.id}`} className="back-link">Back</Link>
-          <Link to={`/contracts`} className="cancel-link">cancel</Link>
+        <div className="update-button-group">
+          <button type='submit' className='update-submit-btn'>Submit</button>
+          <Link to={`/contract/${contractId.id}`} className="update-back-link">Back</Link>
+          <Link to={`/contracts`} className="update-cancel-link">cancel</Link>
         </div>
       </form>
     </div>

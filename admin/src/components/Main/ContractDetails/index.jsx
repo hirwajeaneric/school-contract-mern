@@ -31,37 +31,47 @@ const ContractDetails = () => {
       </h3>
       <div className="contractdetails-space">
         <table className='contractdetails-table'>
-          <tr>
-            <th>Due Amount</th>
-            <td>{contract.dueAmount}</td>
+          <tr className='details-table-row'>
+            <th className='details-table-header'>Due Amount</th>
+            <td className='details-table-data'>
+              <p className='table_values'>{contract.dueAmount}</p>
+            </td>
           </tr>
-          <tr>
-            <th>Paid Amount</th>
-            <td>{contract.paidAmount}</td>
+          <tr className='details-table-row'>
+            <th className='details-table-header'>Paid Amount</th>
+            <td className='details-table-data'>
+              <p className='table_values'>{contract.paidAmount}</p>
+            </td>
           </tr>
-          <tr>
-            <th>Amount Per Installment</th>
-            <td>{contract.amountPerInstallment}</td>
+          <tr className='details-table-row'>
+            <th className='details-table-header'>Amount Per Installment</th>
+            <td className='details-table-data'>
+              <p className='table_values'>{contract.amountPerInstallment}</p>
+            </td>
           </tr>
-          <tr>
-            <th>Urubuto Payment Code</th>
-            <td>{contract.urubutoPayCode}</td>
+          <tr className='details-table-row'>
+            <th className='details-table-header'>Urubuto Payment Code</th>
+            <td className='details-table-data'>
+              <p className='table_values'>{contract.urubutoPayCode}</p>
+            </td>
           </tr>
-          <tr>
-            <th>Email</th>
-            <td>{contract.email}</td>
+          <tr className='details-table-row'>
+            <th className='details-table-header'>Email</th>
+            <td className='details-table-data'>
+              <p className='table_values'>{contract.email}</p>
+            </td>
           </tr>
-          <tr>
-            <th>Sponsor Email</th>
-            <td>{contract.sponsorEmail}</td>
+          <tr className='details-table-row'>
+            <th className='details-table-header'>Sponsor Email</th>
+            <td className='details-table-data'>{contract.sponsorEmail}</td>
           </tr>
-          <tr>
-            <th>Status</th>
-            <td>{contract.status}</td>
+          <tr className='details-table-row'>
+            <th className='details-table-header'>Status</th>
+            <td className='details-table-data'>{contract.status}</td>
           </tr>
-          <tr>
-            <th>Accountant Comments</th>
-            <td>{contract.comment}</td>
+          <tr className='details-table-row'>
+            <th className='details-table-header'>Accountant Comments</th>
+            <td className='details-table-data'>{contract.comment}</td>
           </tr>
         </table>
       </div>
