@@ -25,21 +25,24 @@ exports.prepareCheckin = (req, res, next) => {
     req.body.checkinNumber = checkinNo;
     req.body.creationDate = new Date().toDateString();
     
-    console.log(req.body);
+    console.log(res);
     next();
 }
 
 exports.createCheckin = (req, res, next) => {
+    console.log(res);
     const {errors} = validate(req.body);
     if (errors)
         return res.status(400).send({message: errors.details[0].message})
     else 
         checkinModel.create(req.body)    
         .then(response => {
-            if(response)
+            if(response) {
                 res.status(201).send(response)
-            else
-                res.status(409).send("Failed to create checkin")
+                console.log(response);
+            } else {
+                res.status(409).send("Failed to create checkin");
+            }
         })
         .catch(err => {
             res.status(500).send("Internal Server Error: "+err)

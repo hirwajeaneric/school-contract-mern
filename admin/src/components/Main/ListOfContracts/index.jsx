@@ -51,6 +51,7 @@ const MyContracts = ()=> {
                   <td>{contract.status}</td>
                   <td>
                     <Link to={`/contract/${contract._id}`} className="view-link">Details</Link>
+                    <Link to={`/update-contract/${contract._id}`} className="update-link">Update</Link>
                   </td>
                 </tr>
               )): errors

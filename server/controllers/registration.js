@@ -1,4 +1,4 @@
-const registrationModel = require('../models/registration');
+const Registration = require('../models/registration');
 
 exports.testing = (req, res, next) => {
     res.send('Registration Router works very well.');

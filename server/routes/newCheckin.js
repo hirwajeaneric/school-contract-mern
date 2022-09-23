@@ -1,15 +1,27 @@
 var express = require('express');
+var app = express();
 var router = express.Router();
 const checkinModel = require('../models/checkin');
-const validate = require('../controllers/validateCheckins');
+const validate = require('../services/validateCheckins');
+const {testing, 
+    gatherAllData, 
+    createContract, 
+    listContracts, 
+    findByRegNumber, 
+    findById, 
+    update, 
+    checkStatus
+} = require('../controllers/contracts'); 
 
-exports.newCheck = router.post('/new', (req, res, next) => {
+app.use(checkStatus);
+
+exports.newCheckin = router.post('/new', (req, res, next) => {
     // var checkinNo = 1;
     
     // req.body.checkinNumber = checkinNo;
     // req.body.creationDate = new Date().toDateString();
     
-    console.log(req.body);
+    console.log("Read to create a checkin!");
     // next();
 }
 // ,(req, res, next) => {

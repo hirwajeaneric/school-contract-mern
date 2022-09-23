@@ -1,6 +1,14 @@
 var express = require('express');
 var router = express.Router();
-const { testing, listCheckins, prepareCheckin, findByRegNumber, findByCheckinId, update, findById, createCheckin } = require('../controllers/checkins');
+const { testing, 
+    listCheckins, 
+    prepareCheckin, 
+    findByRegNumber, 
+    findByCheckinId, 
+    update, 
+    findById, 
+    createCheckin 
+} = require('../controllers/checkins');
 
 router.get('/', testing);
 

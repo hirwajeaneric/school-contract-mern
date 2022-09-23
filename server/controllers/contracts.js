@@ -1,5 +1,6 @@
 const contractModel = require('../models/contract');
 const validate = require('../services/validateContracts');
+const newCheckin = require('../routes/newCheckin');
 
 exports.testing = (req, res, next) => {
   res.send('Contract Router works very well.');
@@ -96,11 +97,12 @@ exports.update = (req, res, next) => {
     })
 }
 
-exports.afterUpdateDecisions = (req, res, next)=> {
-    if(req.body.status === "Approved") {
-      console.log("Sending a success email address");
-      // newCheck(req, res, next);
-    } else {
-      console.log("Sending a failure email address");
-    }
+exports.checkStatus = (req, res, next) => {
+  if(req.body.status === "Approved"){
+    console.log("Your claim is : "+req.body.status);
+    console.log("Your registration number is : "+req.body.regNumber);
+    next()
+  } else {
+    console.log("Your claim is : "+req.body.status);
+  }
 }
