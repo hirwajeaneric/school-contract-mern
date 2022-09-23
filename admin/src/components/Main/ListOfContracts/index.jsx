@@ -27,7 +27,7 @@ const MyContracts = ()=> {
         <h1 className='titleText'>Student Contracts</h1>
       </div>
       <div className='table-container'>
-        <table>
+        <table className='list-contract-table'>
           <thead>
             <tr>
                 <th>Creation Date</th>

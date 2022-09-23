@@ -31,7 +31,7 @@ function UpdateContract() {
     .catch(error => {
       setError(error)
     })
-  },[]);
+  },[contractId.id]);
 
   const handleChange = ({currentTarget: input })=>{
     setFormData({...formData, [input.name]: input.value});
@@ -44,8 +44,8 @@ function UpdateContract() {
       return;
     } else {
       try {
-        const url = "http://localhost:8080/api/contracts/update";
-        const { data: res } = await axios.post(url, formData);
+        const url = `http://localhost:8080/api/contracts/update?id=${contractId.id}`;
+        const { data: res } = await axios.put(url, formData);
         const contract = res;
         if(contract)
           navigate(`/contracts`);

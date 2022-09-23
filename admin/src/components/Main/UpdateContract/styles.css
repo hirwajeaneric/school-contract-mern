@@ -1,11 +1,10 @@
 .form-container {
 	width: 90%;
-	margin-top: 40px;
+	margin-top: 20px;
 	background-color: white;
 	padding: 30px 20px;
 	border-radius: 10px;
 	border: 1px solid rgb(216, 216, 216);
-	/* font-size: 90%; */
 	display: flex;
 	justify-content: center;
 	align-items: center;
