@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const Joi = require('joi');
 const passwordComplexity = require('joi-password-complexity');
-const { json } = require('express');
 
 const adminSchema = new mongoose.Schema({
     username: {type: String, required: true},

@@ -7,21 +7,6 @@ import './styles.css';
 import axios from 'axios';
 
 const Main = () => {
-
-  const [errors, setErrors] = useState("")
-
-  useEffect(()=>{;
-    const yourRegNumber = localStorage.getItem('username');
-    axios.get(`http://localhost:8080/api/registration/searchByRegistrationNumber?regNumber=${yourRegNumber}`)
-    .then((res)=>{
-      localStorage.setItem('dueAmount',res.data.dueAmount);
-      localStorage.setItem('numberOfCourses',res.data.numberOfCourses);
-    })
-    .catch(error => {
-      setErrors(error)
-    })
-  },[])
-
   return (
     <div className='grid-container'>
       <div id='item1'>
