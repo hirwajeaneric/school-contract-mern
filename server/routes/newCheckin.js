@@ -3,17 +3,17 @@ var app = express();
 var router = express.Router();
 const checkinModel = require('../models/checkin');
 const validate = require('../services/validateCheckins');
-const {testing, 
-    gatherAllData, 
-    createContract, 
-    listContracts, 
-    findByRegNumber, 
-    findById, 
-    update, 
-    checkStatus
-} = require('../controllers/contracts'); 
+// const {testing, 
+//     gatherAllData, 
+//     createContract, 
+//     listContracts, 
+//     findByRegNumber, 
+//     findById, 
+//     update, 
+//     checkStatus
+// } = require('../controllers/contracts'); 
 
-app.use(checkStatus);
+// app.use(checkStatus);
 
 exports.newCheckin = router.post('/new', (req, res, next) => {
     // var checkinNo = 1;

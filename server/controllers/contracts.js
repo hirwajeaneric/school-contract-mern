@@ -1,6 +1,7 @@
 const contractModel = require('../models/contract');
 const validate = require('../services/validateContracts');
 const newCheckin = require('../routes/newCheckin');
+const { test } = require('../services/test');
 
 exports.testing = (req, res, next) => {
   res.send('Contract Router works very well.');
@@ -99,9 +100,7 @@ exports.update = (req, res, next) => {
 
 exports.checkStatus = (req, res, next) => {
   if(req.body.status === "Approved"){
-    console.log("Your claim is : "+req.body.status);
-    console.log("Your registration number is : "+req.body.regNumber);
-    next()
+    test("You are on the right track!", req.body);
   } else {
     console.log("Your claim is : "+req.body.status);
   }
