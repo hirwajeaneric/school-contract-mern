@@ -10,7 +10,6 @@ const CheckinSchema = new mongoose.Schema({
     paidAmount: { type: Number, required: false },
     dueDate: { type: String, required: true },
     submitDate: { type: String, required: false },
-    state: { type: String, required: true },
     status: { type: String, required: true },
     comment: { type: String, required: false }
 });

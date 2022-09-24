@@ -28,7 +28,6 @@ exports.test = (message, requestData)=> {
         paidAmount: 0,
         dueDate: date1,
         submitDate: "",
-        state: "Unpaid",
         status: "Pending",
         comment: "" 
     }
@@ -42,7 +41,6 @@ exports.test = (message, requestData)=> {
         paidAmount: 0,
         dueDate: date2,
         submitDate: "",
-        state: "Unpaid",
         status: "Pending",
         comment: "" 
     }
@@ -56,13 +54,12 @@ exports.test = (message, requestData)=> {
         paidAmount: 0,
         dueDate: date3,
         submitDate: "",
-        state: "Unpaid",
         status: "Pending",
         comment: "" 
     }
 
     //Saving the installments 
-    const url = "http://localhost:8080/api/checkin/new";
+    const url = 'http://localhost:8080/api/checkin/new';
     
     const savingOne = async ()=> {
         try {
