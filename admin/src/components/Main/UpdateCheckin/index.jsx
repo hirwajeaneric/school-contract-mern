@@ -59,7 +59,7 @@ const UpdateCheckin = () => {
           }
       }
     }
-}
+  }
 
   return (
     <div className='form-container'>
