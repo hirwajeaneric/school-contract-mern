@@ -7,7 +7,8 @@ const { testing,
     findByCheckinId, 
     update, 
     findById, 
-    createCheckin 
+    createCheckin, 
+    preparingUpdateData
 } = require('../controllers/checkins');
 
 router.get('/', testing);
@@ -22,6 +23,6 @@ router.get('/findByCheckinId', findByCheckinId)
 
 router.get('/findById', findById)
 
-router.put('/update', update)
+router.put('/update', preparingUpdateData, update)
 
 module.exports = router;

@@ -39,32 +39,40 @@ const UpdateCheckin = () => {
   };
 
   const handleSubmit = async (e) => {
+    
     e.preventDefault();
-    if (checkinData.status === "Pending"){
-      setErrors("Status must be updated!");
+
+    if (checkinData.paidAmount === "") {
+      setErrors("Paid amount is required!");
+      return;
+    } else if (checkinData.paidAmount === 0 || checkinData.paidAmount === "0") {
+      setErrors("Unacceptable amount entered");
+      return;
+    } else if (checkinData.urubutoPayCode === "") {
+      setErrors("Urubuto code is required!");
+      return;
+    } else if (checkinData.urubutoPayCode.length < 10 || checkinData.urubutoPayCode.length > 10) {
+      setErrors("Invalid Code!");
       return;
     } else {
       try {
         const url = `http://localhost:8080/api/checkin/update?id=${checkinId.id}`;
         const { data: res } = await axios.put(url, checkinData);
         const checkin = res;
-        if(checkin)
-          navigate(`/checkins`);
+        if(checkin) {
+          navigate(`/checkins`);  
+        }
       } catch (error) {
-          if(
-              error.response &&
-              error.response.status >= 400 && 
-              error.response.status <= 500
-          ){
-              setErrors(error.response.data.message);
-          }
+        if(error.response && error.response.status >= 400 && error.response.status <= 500) {
+          setErrors(error.response.data.message);
+        }
       }
     }
   }
 
   return (
     <div className='form-container'>
-      <h1>Update checkin</h1>
+      <h1>Submit Installment</h1>
       <form className='create-form' onSubmit={handleSubmit}>
         <div className='error-message-box'>
           { errors && <div className='error_msg'>{errors}</div> }
@@ -72,24 +80,50 @@ const UpdateCheckin = () => {
         <table className='update-contract-form-table'>
           <tbody>
             <tr className='update-table-row'>
-              <td><label>Chechin Number</label></td>
-              <td><p className="update-values">{checkinData.checkinNumber}</p></td>
+              <td className='update-table-td'>
+                <label>Chechin Number</label>
+              </td>
+              <td className='update-table-td'>
+                <p className="update-values">{checkinData.checkinNumber}</p>
+              </td>
             </tr>
             <tr className='update-table-row'>
-              <td><label>Due Date</label></td>
-              <td><p className="update-values">{checkinData.dueDate}</p></td>
+              <td className='update-table-td'>
+                <label>Due Date</label>
+              </td>
+              <td className='update-table-td'>
+                <p className="update-values">{checkinData.dueDate}</p>
+              </td>
             </tr>
             <tr className='update-table-row'>
-              <td><label>Due Amount</label></td>
-              <td><p className="update-values">{checkinData.dueAmount}</p></td>
+              <td className='update-table-td'>
+                <label>Due Amount</label>
+              </td>
+              <td className='update-table-td'>
+                <p className="update-values">{checkinData.dueAmount}</p>
+              </td>
             </tr>
             <tr className='update-table-row'>
-              <td><label>Status</label></td>
-              <td><p className="update-values">{checkinData.status}</p></td>
-            </tr>
-            <tr className='update-table-row'>
-              <td><label>Paid Amount</label></td>
+              <td className='update-table-td'>
+                <label>Status</label>
+              </td>
               <td>
+                <p className="update-values">{checkinData.status}</p>
+              </td>
+            </tr>
+            <tr className='update-table-row'>
+              <td className='update-table-td'>
+                <label>Accountant comment</label>
+              </td>
+              <td className='update-table-td'>
+                <p className="update-values">{checkinData.comment}</p>
+              </td>
+            </tr>
+            <tr className='update-table-row'>
+              <td className='update-table-td'>
+                <label>Paid Amount</label>
+              </td>
+              <td className='update-table-td'>
                 <input 
                 type="text" 
                   className='form-input'
@@ -99,8 +133,10 @@ const UpdateCheckin = () => {
               </td>
             </tr>
             <tr className='update-table-row'>
-              <td><label>Urubuto Payment Code</label></td>
-              <td>
+              <td className='update-table-td'>
+                <label>Urubuto Payment Code</label>
+              </td>
+              <td className='update-table-td'>
                 <input 
                 type="text" 
                   className='form-input'
@@ -112,9 +148,10 @@ const UpdateCheckin = () => {
           </tbody>
         </table>
         
-        <div className='buttons'>
-          <Link className='summary-btn' to={'/checkins'}>Submit</Link>
-          <Link className='cancel-btn' to={'/checkins'}>Back</Link>
+        <div className='button-group'>
+          <button type='submit' className='update-submit-btn' to={'/checkins'}>Submit</button>
+          <Link className='cancel-btn' to={`/checkin/${checkinId.id}`}>Back</Link>
+          <Link className='back-btn' to={'/checkins'}>Cancel</Link>
         </div>
       </form>
     </div>

@@ -41,16 +41,11 @@ label {
 	padding: 3px;
 }
 
-.button-group {
-	display: flex;
-	flex-direction: row;
+.details-contract-form-table {
 	width: 100%;
-	justify-content: space-between;
-	align-items: center;
-	margin-top: 20px;
 }
 
-.back-btn, 
+.update-back-link, 
 .update-cancel-link, 
 .update-submit-btn {
 	text-decoration: none;
@@ -78,12 +73,12 @@ label {
 	color: black;
 }
 
-.back-btn {
+.update-back-link {
 	background-color: black;
 	color: white;
 }
 
-.back-btn:hover {
+.update-back-link:hover {
 	background-color: rgb(60, 60, 60);
 }
 
@@ -98,4 +93,29 @@ label {
 
 .update-table-td {
 	padding: 0 10px !important;
+}
+
+.button-group {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	margin-top: 40px;
+}
+
+.next-to-update-btn, .details-back-btn {
+	text-decoration: none;
+	padding: 8px 12px;
+	color: white;
+	border-radius: 5px;
+}
+
+.next-to-update-btn {
+	background-color: blue;
+}
+
+.details-back-btn {
+	background-color: brown;
 }

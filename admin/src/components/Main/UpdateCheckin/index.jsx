@@ -50,13 +50,9 @@ const UpdateCheckin = () => {
         if(checkin)
           navigate(`/checkins`);
       } catch (error) {
-          if(
-              error.response &&
-              error.response.status >= 400 && 
-              error.response.status <= 500
-          ){
-              setError(error.response.data.message);
-          }
+        if(error.response && error.response.status >= 400 && error.response.status <= 500) {
+          setError(error.response.data.message);
+        }
       }
     }
   }

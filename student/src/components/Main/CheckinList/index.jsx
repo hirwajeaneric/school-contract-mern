@@ -52,7 +52,8 @@ const CheckinList = () => {
                   <td>{checkin.urubutoPayCode}</td>
                   <td>{checkin.status}</td>
                   <td>
-                    <Link to={`/update-checkin/${checkin._id}`} className="view-link">View/Update</Link>
+                    <Link to={`/checkin/${checkin._id}`} className="view-link">Details</Link>
+                    <Link to={`/update-checkin/${checkin._id}`} className="update-link">Update</Link>
                   </td>
                 </tr>
               )): errors
