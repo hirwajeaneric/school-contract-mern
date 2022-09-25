@@ -10,6 +10,7 @@ import Success from './components/Main/Success';
 import Notifications from './components/Main/Notifications'
 import NotificationDetails from './components/Main/NotificationDetails';
 import ContractDetails from "./components/Main/ContractDetails";
+import CheckinDetails from "./components/Main/CheckinDetails";
 
 function App() {
   const user = localStorage.getItem('token')
@@ -21,6 +22,7 @@ function App() {
         <Route path="new-contract/" element={<CreateContract />} />
         <Route path="success/" element={<Success />} />
         <Route path="contract/:id" element={<ContractDetails />} />
+        <Route path="checkin/:id" element={<CheckinDetails />} />
         <Route path="checkins/" element={<CheckinList />} />
         <Route path="update-checkin/:id" element={<UpdateCheckin />} />
         <Route path="notifications/" element={<Notifications />} />
@@ -33,6 +35,7 @@ function App() {
       <Route path="/" exact element={<Navigate replace to="/login" />} />
       <Route path="/contracts" exact element={<Navigate replace to="/login" />} />
       <Route path="/checkins" exact element={<Navigate replace to="/login" />} />
+      <Route path="/checkin/:id" exact element={<Navigate replace to="/login" />} />
       <Route path="/new-contract" exact element={<Navigate replace to="/login" />} />
       <Route path="/success/" exact element={<Navigate replace to="/login" />} />
       <Route path="contract/:id" exact element={<Navigate replace to="/login" />} />

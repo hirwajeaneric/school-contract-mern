@@ -8,7 +8,7 @@ const SideNavBar = () => {
         <div className="navigation_links">
            <Link to='contracts' className={styles.link}>My Contracts</Link>
            <Link to='new-contract' className={styles.link}>New Contract</Link>
-           <Link to='checkins' className={styles.link}>Checkins</Link>
+           <Link to='checkins' className={styles.link}>Installments</Link>
            <Link to='notifications' className={styles.link}>Notifications</Link>
         </div>
     </div>

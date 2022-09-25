@@ -62,6 +62,12 @@ const CheckinDetails = () => {
             </td>
           </tr>
           <tr className='details-table-row'>
+            <th className='details-table-header'>Submit Date</th>
+            <td className='details-table-data'>
+              <p className='table_values'>{checkin.submitDate}</p>
+            </td>
+          </tr>
+          <tr className='details-table-row'>
             <th className='details-table-header'>Status</th>
             <td className='details-table-data'>{checkin.status}</td>
           </tr>

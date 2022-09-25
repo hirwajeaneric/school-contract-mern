@@ -93,6 +93,12 @@ exports.findById = (req, res, next) => {
     })
 }
 
+exports.preparingUpdateData = (req, res, next) => {
+    if (req.body.submitDate === "")
+        req.body.submitDate = new Date().toDateString();
+    next();
+} 
+
 exports.update = (req, res, next) => {
     const {errors} = validate(req.body);
     if(errors)

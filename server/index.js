@@ -11,7 +11,6 @@ const adminAuthRoutes = require('./routes/adminAuth');
 const contractRoutes = require('./routes/contracts');
 const registrationRoutes = require('./routes/registration');
 const checkinRoutes = require('./routes/checkin');
-// const newCheckinRoute = require('./routes/newCheckin');
 
 //dabase connection
 connection();
@@ -28,7 +27,6 @@ app.use('/admin/login', adminAuthRoutes);
 app.use('/api/contracts/', contractRoutes);
 app.use('/api/registration/', registrationRoutes);
 app.use('/api/checkin/', checkinRoutes);
-// app.use('/api/checkins/', newCheckinRoute);
 
 const port = process.env.PORT || 8080;
 app.listen(port, ()=> console.log(`Listening on port ${port}...`));
