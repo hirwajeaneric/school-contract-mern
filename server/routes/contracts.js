@@ -20,12 +20,6 @@ router.get('/findByRegNumber', findByRegNumber);
 
 router.get('/findById', findById);
 
-router.put('/update', update, checkStatus);
-
-// router.put('/update', 
-//     update, 
-//     checkStatus, 
-//     checkinRoutes.post('/new', prepareCheckin, createCheckin)
-// );
+router.put('/update', update);
 
 module.exports = router;

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom';
+import { savingOne, savingTwo, savingThree } from '../../../services/createCheckins';
 import './styles.css';
 
 function UpdateContract() {
@@ -17,6 +18,22 @@ function UpdateContract() {
     creationDate: "",
     comment: ""
   });
+
+  const [acontract, setAcontract] = useState({
+    regNumber: "",
+    urubutoPayCode: "",
+    dueAmount: "",
+    paidAmount: "",
+    amountPerInstallment: "",
+    email: "",
+    sponsorEmail: "",
+    status: "",
+    creationDate: "",
+    comment: "",
+    contractId: ""
+  });
+
+  const [message, setMessage] = useState("");
 
   const [error, setError] = useState("");
   
@@ -37,29 +54,97 @@ function UpdateContract() {
     setFormData({...formData, [input.name]: input.value});
   };  
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (formData.status === "Pending"){
       setError("Status must be updated!");
       return;
     } else {
-      try {
-        const url = `http://localhost:8080/api/contracts/update?id=${contractId.id}`;
-        const { data: res } = await axios.put(url, formData);
-        const contract = res;
-        if(contract)
-          navigate(`/contracts`);
-      } catch (error) {
-          if(
-              error.response &&
-              error.response.status >= 400 && 
-              error.response.status <= 500
-          ){
-              setError(error.response.data.message);
-          }
-      }
+      const url = `http://localhost:8080/api/contracts/update?id=${contractId.id}`;
+      
+      axios.put(url, formData)
+      .then((res) => {
+        const contractData = res.data;
+        console.log(contractData);
+        setAcontract((acontract) => ({ 
+          contractData
+        }))
+        // setAcontract((acontract) => ({
+        //   ...acontract, 
+        //   contractData
+        // }))
+      })
+      .catch (error => {
+        if(error.response && error.response.status >= 400 && error.response.status <= 500){
+            setError(error.response.data.message);
+        }}
+      )
+      // console.log("New contract : ",acontract);
     }
-}
+
+    // var contractCreatedOn = contract.creationDate;
+    // var convertedDate = new Date(contractCreatedOn);
+
+    // convertedDate.setDate(convertedDate.getDate()+30);
+    // var date1 = convertedDate.toDateString();
+    // convertedDate.setDate(convertedDate.getDate()+30);
+    // var date2 = convertedDate.toDateString();
+    // convertedDate.setDate(convertedDate.getDate()+30);
+    // var date3 = convertedDate.toDateString();
+
+    // // Installment data
+    // const firstInstallment = {
+    //     regNumber: contract.regNumber,
+    //     contractId: contract._id,
+    //     checkinNumber: "1", 
+    //     urubutoPayCode: "",
+    //     dueAmount: contract.amountPerInstallment,
+    //     paidAmount: 0,
+    //     dueDate: date1,
+    //     submitDate: "",
+    //     status: "Pending",
+    //     comment: "" 
+    // }
+
+    // const secondInstallment = {
+    //     regNumber: contract.regNumber,
+    //     contractId: contract._id,
+    //     checkinNumber: "2", 
+    //     urubutoPayCode: "",
+    //     dueAmount: contract.amountPerInstallment,
+    //     paidAmount: 0,
+    //     dueDate: date2,
+    //     submitDate: "",
+    //     status: "Pending",
+    //     comment: "" 
+    // }
+
+    // const thirdInstallment = {
+    //     regNumber: contract.regNumber,
+    //     contractId: contract._id,
+    //     checkinNumber: "3", 
+    //     urubutoPayCode: "",
+    //     dueAmount: contract.amountPerInstallment,
+    //     paidAmount: 0,
+    //     dueDate: date3,
+    //     submitDate: "",
+    //     status: "Pending",
+    //     comment: "" 
+    // }
+
+    // if(contract.status === "Approved"){
+    //   savingOne(firstInstallment);
+    //   savingTwo(secondInstallment);
+    //   savingThree(thirdInstallment);
+    // } else {
+    //   console.log("Send a reject message!");
+    // }
+
+    console.log(acontract);
+
+    if(acontract)
+      navigate(`/contracts`);
+  }
 
   return (
     <div className='form-container'>

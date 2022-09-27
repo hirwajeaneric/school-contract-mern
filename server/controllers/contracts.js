@@ -1,7 +1,6 @@
 const contractModel = require('../models/contract');
 const validate = require('../services/validateContracts');
 const newCheckin = require('../routes/newCheckin');
-const { test } = require('../services/test');
 
 exports.testing = (req, res, next) => {
   res.send('Contract Router works very well.');
@@ -87,8 +86,7 @@ exports.update = (req, res, next) => {
     contractModel.findByIdAndUpdate(contractId, req.body)
     .then(response=>{
         if (response) {
-          res.status(201).send("Contract Updated")
-          next()
+          res.status(201).send(response)
         } else {
           res.status(409).send("Failed to update contract")
         }
@@ -96,12 +94,4 @@ exports.update = (req, res, next) => {
     .catch(err=>{
         res.status(500).send('Internal Server Error'+err)
     })
-}
-
-exports.checkStatus = (req, res, next) => {
-  if(req.body.status === "Approved"){
-    test("You are on the right track!", req.body);
-  } else {
-    console.log("Your claim is : "+req.body.status);
-  }
 }
