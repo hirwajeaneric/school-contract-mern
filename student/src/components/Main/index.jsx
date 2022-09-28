@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState} from 'react'
 import { Outlet } from 'react-router-dom';
 import NotificationBar from './NotificationBar';
 import SideNavBar from './SideNavBar';
@@ -7,9 +7,8 @@ import './styles.css';
 import axios from 'axios';
 
 const Main = () => {
-
   const [errors, setErrors] = useState("")
-
+  
   useEffect(()=>{;
     const yourRegNumber = localStorage.getItem('id');
     axios.get(`http://localhost:8080/api/registration/searchByRegistrationNumber?regNumber=${yourRegNumber}`)
@@ -31,7 +30,7 @@ const Main = () => {
         <SideNavBar />
       </div>
       <div id='item3'>
-        <Outlet />
+          <Outlet />
       </div>
       <div id='item4'>
         <NotificationBar />

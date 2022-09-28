@@ -21,7 +21,7 @@ const MyContracts = ()=> {
   return (
     <div className="contracts_container">
       <div className='titlebar'>
-        <h1 className='titleText'>Student Contracts</h1>
+        <h1 className='titleText'>Contracts</h1>
       </div>
       <div className='table-container'>
         <table className='list-contract-table'>

@@ -89,7 +89,6 @@ exports.update = (req, res, next) => {
         if (response) {
           next();
           res.status(201).send(response);
-          // console.log(response);
         } else {
           res.status(409).send("Failed to update contract")
         }

@@ -56,7 +56,7 @@ function CreateContract() {
         const { data: res } = await axios.post(url, formData);
         const contract = res;
         if(contract)
-          navigate(`/success`);
+          navigate(`/contracts`, {replace: false, state: {text: "Contract Created!"}});
       } catch (error) {
           if(
               error.response &&

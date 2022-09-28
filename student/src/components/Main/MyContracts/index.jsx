@@ -1,19 +1,23 @@
-import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom';
+import React, { useEffect, useContext, createContext } from 'react'
+import { Link, useLocation } from 'react-router-dom';
 import './styles.css';
 import axios from 'axios';
 import { useState } from 'react';
+import { MessageContext } from '../../../App';
 
 const MyContracts = ()=> {
   const [contracts, setContracts] = useState([])
-  const [errors, setErrors] = useState("")
+  const [errors, setErrors] = useState("");
+  const [responsetext, setResponsetext] = useState("");
+  
+  const { state } = useLocation();
+  setResponsetext(state.text);
 
+  console.log(state);
   useEffect(()=>{
     const regNo = localStorage.getItem("id");
-    console.log(regNo);
     axios.get(`http://localhost:8080/api/contracts/findByRegNumber?regNumber=${regNo}`)
     .then((res) => {
-      console.log(res.data);
       setContracts(res.data)
     })
     .catch(error => {
@@ -27,9 +31,13 @@ const MyContracts = ()=> {
         <h1 className='titleText'>My Contracts</h1>
         <Link className='new_contract_link' to={'/new-contract'}>New</Link>
       </div>
-      {/* <div className='success_message_box'>
-        <p className='success_msg'>Error Message Here</p>
-      </div> */}
+      {/* Success message */}
+      {responsetext && 
+        (<div className='success_message_box'>
+          <p className='success_msg'>{responsetext}</p>
+        </div>)
+      }
+      
       <div className='table-container'>
         <table>
           <thead>

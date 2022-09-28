@@ -21,7 +21,7 @@ const CheckinList = () => {
   return (
     <div className="contracts_container">
       <div className='titlebar'>
-        <h1 className='titleText'>List of Checkins</h1>
+        <h1 className='titleText'>Installments</h1>
       </div>
       <div className='table-container'>
         <table className='list-contract-table'>
