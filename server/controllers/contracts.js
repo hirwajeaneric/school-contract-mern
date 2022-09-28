@@ -1,6 +1,7 @@
 const contractModel = require('../models/contract');
 const validate = require('../services/validateContracts');
 const newCheckin = require('../routes/newCheckin');
+const { createCheckins } = require('../services/createCheckins');
 
 exports.testing = (req, res, next) => {
   res.send('Contract Router works very well.');
@@ -86,7 +87,9 @@ exports.update = (req, res, next) => {
     contractModel.findByIdAndUpdate(contractId, req.body)
     .then(response=>{
         if (response) {
-          res.status(201).send(response)
+          next();
+          res.status(201).send(response);
+          // console.log(response);
         } else {
           res.status(409).send("Failed to update contract")
         }
@@ -94,4 +97,15 @@ exports.update = (req, res, next) => {
     .catch(err=>{
         res.status(500).send('Internal Server Error'+err)
     })
+}
+
+
+exports.newMiddleWare = (req, res, next) => {
+  if(req.body.status ==="Approved"){
+    console.log("It is approved!");
+    const contractData = req.body;
+    createCheckins(contractData);
+  }else {
+    console.log("It is rejected!");
+  }
 }

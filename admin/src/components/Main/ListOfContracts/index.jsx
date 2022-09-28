@@ -9,11 +9,8 @@ const MyContracts = ()=> {
   const [errors, setErrors] = useState("")
 
   useEffect(()=>{
-    const regNo = localStorage.getItem("id");
-    console.log(regNo);
     axios.get(`http://localhost:8080/api/contracts/list`)
     .then((res) => {
-      console.log(res.data);
       setContracts(res.data)
     })
     .catch(error => {

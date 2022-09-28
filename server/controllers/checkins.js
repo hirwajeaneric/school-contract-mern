@@ -19,18 +19,7 @@ exports.listCheckins = (req, res, next) => {
     })
 }
 
-exports.prepareCheckin = (req, res, next) => {
-    var checkinNo = 1;
-    
-    req.body.checkinNumber = checkinNo;
-    req.body.creationDate = new Date().toDateString();
-    
-    console.log(res);
-    next();
-}
-
 exports.createCheckin = (req, res, next) => {
-    console.log(res);
     const {errors} = validate(req.body);
     if (errors)
         return res.status(400).send({message: errors.details[0].message})
@@ -48,6 +37,26 @@ exports.createCheckin = (req, res, next) => {
             res.status(500).send("Internal Server Error: "+err)
         })
         next()
+}
+
+
+exports.createManyCheckins = (req, res, next) => {
+    const {errors} = validate(req.body);
+    if (errors)
+        return res.status(400).send({message: errors.details[0].message})
+    else 
+        checkinModel.insertMany(req.body)    
+        .then(response => {
+            if(response) {
+                res.status(201).send("Checkins created!")
+                console.log(response);
+            } else {
+                res.status(409).send("Failed to create 3 checkins");
+            }
+        })
+        .catch(err => {
+            res.status(500).send("Internal Server Error: "+err)
+        })
 }
 
 exports.findByRegNumber = (req, res, next) => {
