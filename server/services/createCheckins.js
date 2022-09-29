@@ -24,6 +24,8 @@ exports.createCheckins = (contractData) => {
         paidAmount: 0,
         dueDate: date1,
         submitDate: "",
+        email: contractData.email,
+        sponsorEmail: contractData.sponsorEmail,
         status: "Pending",
         comment: "" 
     }
@@ -37,6 +39,8 @@ exports.createCheckins = (contractData) => {
         paidAmount: 0,
         dueDate: date2,
         submitDate: "",
+        email: contractData.email,
+        sponsorEmail: contractData.sponsorEmail,
         status: "Pending",
         comment: "" 
     }
@@ -49,6 +53,8 @@ exports.createCheckins = (contractData) => {
         dueAmount: contractData.amountPerInstallment,
         paidAmount: 0,
         dueDate: date3,
+        email: contractData.email,
+        sponsorEmail: contractData.sponsorEmail,
         submitDate: "",
         status: "Pending",
         comment: "" 

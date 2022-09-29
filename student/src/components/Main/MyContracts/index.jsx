@@ -3,17 +3,17 @@ import { Link, useLocation } from 'react-router-dom';
 import './styles.css';
 import axios from 'axios';
 import { useState } from 'react';
-import { MessageContext } from '../../../App';
+// import { MessageContext } from '../../../App';
 
 const MyContracts = ()=> {
   const [contracts, setContracts] = useState([])
   const [errors, setErrors] = useState("");
-  const [responsetext, setResponsetext] = useState("");
+  // const [responsetext, setResponsetext] = useState("");
   
-  const { state } = useLocation();
-  setResponsetext(state.text);
+  // const { state } = useLocation();
+  // setResponsetext(state.text);
 
-  console.log(state);
+  // console.log(state);
   useEffect(()=>{
     const regNo = localStorage.getItem("id");
     axios.get(`http://localhost:8080/api/contracts/findByRegNumber?regNumber=${regNo}`)
@@ -32,11 +32,11 @@ const MyContracts = ()=> {
         <Link className='new_contract_link' to={'/new-contract'}>New</Link>
       </div>
       {/* Success message */}
-      {responsetext && 
+      {/* {responsetext && 
         (<div className='success_message_box'>
           <p className='success_msg'>{responsetext}</p>
         </div>)
-      }
+      } */}
       
       <div className='table-container'>
         <table>

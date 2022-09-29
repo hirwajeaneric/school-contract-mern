@@ -2,6 +2,7 @@ const contractModel = require('../models/contract');
 const validate = require('../services/validateContracts');
 const newCheckin = require('../routes/newCheckin');
 const { createCheckins } = require('../services/createCheckins');
+const { mailForContracts } = require('../services/mailForContracts');
 
 exports.testing = (req, res, next) => {
   res.send('Contract Router works very well.');
@@ -24,6 +25,7 @@ exports.createContract = (req, res, next) => {
       contractModel.create(req.body)
       .then(response=>{
         if (response) {
+          next();
           res.status(201).send(response)
         } else {
           res.status(409).send("Failed to create a contract")
@@ -107,4 +109,10 @@ exports.newMiddleWare = (req, res, next) => {
   }else {
     console.log("It is rejected!");
   }
+  next();
+}
+
+exports.sendMail = (req, res, next) => {
+  const contractData = req.body;
+  mailForContracts(contractData);
 }

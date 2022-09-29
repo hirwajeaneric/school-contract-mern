@@ -7,14 +7,15 @@ const {testing,
     findByRegNumber, 
     findById, 
     update,
-    newMiddleWare
+    newMiddleWare,
+    sendMail
 } = require('../controllers/contracts'); 
 
 router.get('/', testing);
 router.get('/list', listContracts);
-router.post('/new', gatherAllData ,createContract);
+router.post('/new', gatherAllData ,createContract, sendMail);
 router.get('/findByRegNumber', findByRegNumber);
 router.get('/findById', findById);
-router.put('/update', update, newMiddleWare);
+router.put('/update', update, newMiddleWare, sendMail);
 
 module.exports = router;

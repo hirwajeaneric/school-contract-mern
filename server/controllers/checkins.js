@@ -116,12 +116,19 @@ exports.update = (req, res, next) => {
     const checkinId = req.query.id;
     checkinModel.findByIdAndUpdate(checkinId, req.body)
     .then(response => {
-        if (response)
-            res.status(201).send("Checkin Updated")
-        else 
+        if (response){
+            next();
+            res.status(201).send("Checkin Updated");
+        } else {
             res.status(409).send("Failed to update checkin");
+        }
     })
     .catch(err => {
         res.status(500).send('Internal Server Error '+err)
     })
 }
+
+exports.sendMail = (req, res, next) => {
+    const checkinData = req.body;
+    mailForCheckins(checkinData);
+  }
