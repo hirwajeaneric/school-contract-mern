@@ -1,5 +1,6 @@
 const checkinModel = require('../models/checkin');
 const validate = require('../services/validateCheckins');
+const {mailForCheckins} = require('../services/mailForCheckins');
 
 exports.testing = (req, res, next) => {
     res.send('Checkin Router works perfectly...');    
