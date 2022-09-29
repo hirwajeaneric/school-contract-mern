@@ -5,7 +5,7 @@ exports.mailForCheckins = (checkinData)=>{
     if(checkinData.status === "Pending" && checkinData.paidAmount > 0 && checkinData.urubutoPayCode !== "") {
         emailsubject = "Installment Payment Submitted!";
         studentMessage = `Dear Student, \nCongratulations for you have successfully Submitted your payment for installment ${checkinData.checkinNumber} to AUCA Accounting Office. \nYou will be notified when your installment payment is validated!\n\nRegards\n\nAUCA Contract`;
-        sponsorMessage = `Dear Sir/Madam, \nThe student that you sponsor have successfully Submitted payment for  installment ${checkinData.checkinNumber} to AUCA Accounting Office. \nAmount paid: ${checkinData.paidAmount}. \nYou will be notified when their installment payment is validated!`;
+        sponsorMessage = `Dear Sir/Madam, \nThe student that you sponsor have successfully Submitted payment for  installment ${checkinData.checkinNumber} to AUCA Accounting Office. \nAmount paid: ${checkinData.paidAmount}. \nYou will be notified when their installment payment is validated!\n\nRegards\n\nAUCA Contract`;
     } else if (checkinData.status === "Approved") {
         emailsubject = "Installment Payment Approved!";
         studentMessage = `Dear Student, \nCongratulations for payment of installent ${checkinData.checkinNumber} was Approved! \n\nRegards\n\nAUCA Contract!`;
