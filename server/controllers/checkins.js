@@ -103,6 +103,37 @@ exports.findById = (req, res, next) => {
     })
 }
 
+exports.findByStatus = (req, res, next) => {
+    const regNumberOfStudent= req.query.regNumber;
+    const statusOfCheckin= req.query.status;
+    checkinModel.find({regNumber:regNumberOfStudent, status: statusOfCheckin})
+    .then(response=> {
+      if (response) {
+        res.status(200).send(response)
+      } else {
+        res.status(404).send("You don't have any checkins yet!")
+      }
+    })
+    .catch(err=>{
+      res.status(500).send("Server error: "+err)
+    })
+}
+
+exports.findAllByStatus = (req, res, next) => {
+    const statusOfCheckin= req.query.status;
+    checkinModel.find({status: statusOfCheckin})
+    .then(response=> {
+      if (response) {
+        res.status(200).send(response)
+      } else {
+        res.status(404).send("You don't have any checkins yet!")
+      }
+    })
+    .catch(err=>{
+      res.status(500).send("Server error: "+err)
+    })
+}
+
 exports.preparingUpdateData = (req, res, next) => {
     if (req.body.submitDate === "")
         req.body.submitDate = new Date().toDateString();

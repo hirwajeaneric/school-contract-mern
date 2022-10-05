@@ -65,6 +65,37 @@ exports.findByRegNumber = (req, res, next) => {
     })
 }
 
+exports.findByStatus = (req, res, next) => {
+  const regNumberOfStudent= req.query.regNumber;
+  const statusOfContract= req.query.status;
+  contractModel.find({regNumber:regNumberOfStudent, status: statusOfContract})
+  .then(response=> {
+    if (response) {
+      res.status(200).send(response)
+    } else {
+      res.status(404).send("You don't have any contract yet!")
+    }
+  })
+  .catch(err=>{
+    res.status(500).send("Server error: "+err)
+  })
+}
+
+exports.findAllByStatus = (req, res, next) => {
+  const statusOfContract= req.query.status;
+  contractModel.find({status: statusOfContract})
+  .then(response=> {
+    if (response) {
+      res.status(200).send(response)
+    } else {
+      res.status(404).send("You don't have any contract yet!")
+    }
+  })
+  .catch(err=>{
+    res.status(500).send("Server error: "+err)
+  })
+}
+
 exports.findById = (req, res, next) => {
     const contractId = req.query.id;
     contractModel.findById(contractId)

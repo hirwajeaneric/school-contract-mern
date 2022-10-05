@@ -5,9 +5,9 @@
     grid-template-rows: 0.3fr 1fr 1fr 1fr;
     grid-template-areas: 
         "item1 item1 item1 item1"
-        "item2 item3 item3 item4"
-        "item2 item3 item3 item4"
-        "item2 item3 item3 item5";
+        "item2 item3 item3 item3"
+        "item2 item3 item3 item3"
+        "item2 item3 item3 item3";
 }
 
 #item1 { 
@@ -26,7 +26,7 @@
     align-items: center;
     
 }
-#item4 { 
+/* #item4 { 
     grid-area: item4;
     background-color: rgb(255, 255, 255);
     height: 100%;
@@ -39,7 +39,7 @@
 #item5 {
     grid-area: item5;
     background-color: rgb(236, 236, 236);
-}
+} */
 
 
 

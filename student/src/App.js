@@ -12,6 +12,7 @@ import NotificationDetails from './components/Main/NotificationDetails';
 import ContractDetails from "./components/Main/ContractDetails";
 import CheckinDetails from "./components/Main/CheckinDetails";
 import { createContext, useState } from "react";
+import Dashboard from "./components/Main/Dashboard";
 
 export const MessageContext = createContext("");
 
@@ -24,7 +25,8 @@ function App() {
       <Routes>
         {user &&
         <Route path="/" exact element={<Main />} >  
-          <Route  path="contracts/" element={<MyContracts />} />
+          <Route path="/" element={<Dashboard />} />
+          <Route path="contracts/" element={<MyContracts />} />
           <Route path="new-contract/" element={<CreateContract />} />
           <Route path="success/" element={<Success />} />
           <Route path="contract/:id" element={<ContractDetails />} />

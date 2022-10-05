@@ -1,5 +1,5 @@
 import React, { useEffect, useState} from 'react'
-import { Outlet } from 'react-router-dom';
+import { Outlet, useParams } from 'react-router-dom';
 import NotificationBar from './NotificationBar';
 import SideNavBar from './SideNavBar';
 import TopBar from './TopBar';
@@ -21,6 +21,9 @@ const Main = () => {
     })
   },[])
 
+  const param = useParams();
+  console.log(param);
+
   return (
     <div className='grid-container'>
       <div id='item1'>
@@ -30,12 +33,12 @@ const Main = () => {
         <SideNavBar />
       </div>
       <div id='item3'>
-          <Outlet />
+        <Outlet />
       </div>
-      <div id='item4'>
+      {/* <div id='item4'>
         <NotificationBar />
       </div>
-      <div id='item5'></div>
+      <div id='item5'></div> */}
     </div>
   )
 }
