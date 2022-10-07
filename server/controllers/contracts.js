@@ -1,7 +1,8 @@
 const contractModel = require('../models/contract');
 const validate = require('../services/validateContracts');
 const newCheckin = require('../routes/newCheckin');
-const { test } = require('../services/test');
+const { createCheckins } = require('../services/createCheckins');
+const { mailForContracts } = require('../services/mailForContracts');
 
 exports.testing = (req, res, next) => {
   res.send('Contract Router works very well.');
@@ -24,6 +25,7 @@ exports.createContract = (req, res, next) => {
       contractModel.create(req.body)
       .then(response=>{
         if (response) {
+          next();
           res.status(201).send(response)
         } else {
           res.status(409).send("Failed to create a contract")
@@ -63,6 +65,37 @@ exports.findByRegNumber = (req, res, next) => {
     })
 }
 
+exports.findByStatus = (req, res, next) => {
+  const regNumberOfStudent= req.query.regNumber;
+  const statusOfContract= req.query.status;
+  contractModel.find({regNumber:regNumberOfStudent, status: statusOfContract})
+  .then(response=> {
+    if (response) {
+      res.status(200).send(response)
+    } else {
+      res.status(404).send("You don't have any contract yet!")
+    }
+  })
+  .catch(err=>{
+    res.status(500).send("Server error: "+err)
+  })
+}
+
+exports.findAllByStatus = (req, res, next) => {
+  const statusOfContract= req.query.status;
+  contractModel.find({status: statusOfContract})
+  .then(response=> {
+    if (response) {
+      res.status(200).send(response)
+    } else {
+      res.status(404).send("You don't have any contract yet!")
+    }
+  })
+  .catch(err=>{
+    res.status(500).send("Server error: "+err)
+  })
+}
+
 exports.findById = (req, res, next) => {
     const contractId = req.query.id;
     contractModel.findById(contractId)
@@ -87,8 +120,8 @@ exports.update = (req, res, next) => {
     contractModel.findByIdAndUpdate(contractId, req.body)
     .then(response=>{
         if (response) {
-          res.status(201).send("Contract Updated")
-          next()
+          next();
+          res.status(201).send(response);
         } else {
           res.status(409).send("Failed to update contract")
         }
@@ -98,10 +131,19 @@ exports.update = (req, res, next) => {
     })
 }
 
-exports.checkStatus = (req, res, next) => {
-  if(req.body.status === "Approved"){
-    test("You are on the right track!", req.body);
-  } else {
-    console.log("Your claim is : "+req.body.status);
+
+exports.newMiddleWare = (req, res, next) => {
+  if(req.body.status ==="Approved"){
+    console.log("It is approved!");
+    const contractData = req.body;
+    createCheckins(contractData);
+  }else {
+    console.log("It is rejected!");
   }
+  next();
+}
+
+exports.sendMail = (req, res, next) => {
+  const contractData = req.body;
+  mailForContracts(contractData);
 }

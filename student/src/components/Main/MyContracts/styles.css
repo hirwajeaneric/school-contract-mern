@@ -1,5 +1,6 @@
 .contracts_container {
 	padding: 20px 40px;
+	width: 100%;
 }
  
 .listofcontracts,
@@ -20,6 +21,7 @@
 
 .success_message_box {
 	margin: 10px 0;
+	width: 100%;
 }
 
 .success_msg {
@@ -27,11 +29,9 @@
 	padding: 5px;
 	margin: 5px 0 10px;
 	font-size: 14px;
-	/* background-color: #f34646; */
-	background-color: #90ff9a;
+	background-color: #b4f4b9 !important;
 	border: 1px solid rgb(42, 184, 68);
 	color: rgb(37, 159, 60);
-	/* color: #f34646; */
 	border-radius: 5px;
 	text-align: center;
 }
@@ -68,6 +68,7 @@
 	width: 100%;
 	display: flex;
 	flex-direction: column;
+	background-color: white;
 }
 
 .table {

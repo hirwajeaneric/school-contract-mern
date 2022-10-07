@@ -6,6 +6,8 @@ const CheckinSchema = new mongoose.Schema({
     contractId: { type: String, required: true },
     checkinNumber: { type: Number, required: true },
     urubutoPayCode: { type: String, required: false },
+    email: { type: String, required: true },
+    sponsorEmail: { type: String, required: true },
     dueAmount: { type: Number, required: true },
     paidAmount: { type: Number, required: false },
     dueDate: { type: String, required: true },

@@ -9,6 +9,7 @@ import ListOfContracts from './components/Main/ListOfContracts';
 import ContractDetails from "./components/Main/ContractDetails";
 import CheckinDetails from "./components/Main/CheckinDetails";
 import Registration from "./components/Main/Registration";
+import Dashboard from "./components/Main/Dashboard";
 
 function App() {
   const user = localStorage.getItem('token')
@@ -16,6 +17,7 @@ function App() {
     <Routes>
       {user &&
       <Route path="/" exact element={<Main />} >  
+        <Route path="/" element={<Dashboard />} />
         <Route  path="contracts/" element={<ListOfContracts />} />
         <Route path="update-contract/:id" element={<UpdateContract />} />
         <Route path="contract/:id" element={<ContractDetails />} />

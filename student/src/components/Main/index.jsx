@@ -1,15 +1,11 @@
-import React, { useEffect, useState } from 'react'
-import { Outlet } from 'react-router-dom';
-import NotificationBar from './NotificationBar';
+import React, { useEffect} from 'react'
+import { Outlet, useParams } from 'react-router-dom';
 import SideNavBar from './SideNavBar';
 import TopBar from './TopBar';
 import './styles.css';
 import axios from 'axios';
 
 const Main = () => {
-
-  const [errors, setErrors] = useState("")
-
   useEffect(()=>{;
     const yourRegNumber = localStorage.getItem('id');
     axios.get(`http://localhost:8080/api/registration/searchByRegistrationNumber?regNumber=${yourRegNumber}`)
@@ -18,9 +14,12 @@ const Main = () => {
       localStorage.setItem('numberOfCourses',res.data.numberOfCourses);
     })
     .catch(error => {
-      setErrors(error)
+      console.log(error);
     })
   },[])
+
+  const param = useParams();
+  console.log(param);
 
   return (
     <div className='grid-container'>
@@ -31,12 +30,8 @@ const Main = () => {
         <SideNavBar />
       </div>
       <div id='item3'>
-        <Outlet />
+        <Outlet className="outlet-space" />
       </div>
-      <div id='item4'>
-        <NotificationBar />
-      </div>
-      <div id='item5'></div>
     </div>
   )
 }

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import './styles.css';
 
 const ContractDetails = () => {
@@ -8,7 +8,6 @@ const ContractDetails = () => {
   const contractId = useParams();
 
   const [contract, setContract] = useState({})
-  const [errors, setErrors] = useState("")
 
   useEffect(()=>{
     axios.get(`http://localhost:8080/api/contracts/findById?id=${contractId.id}`)
@@ -17,52 +16,41 @@ const ContractDetails = () => {
       setContract(res.data)
     })
     .catch(error => {
-      setErrors(error)
+      console.log(error);
     })
   },[]);
 
 
   return (
     <div className='contractdetails-container'>
-      <h2>Contract Details</h2>
+      <h1>Contract Details</h1>
       <h3 className='contract-date'>Contract created on: &nbsp;&nbsp; 
         <span className='the-date'>{contract.creationDate}</span>
       </h3>
       <div className="contractdetails-space">
-        <table className='contractdetails-table'>
-          <tr>
-            <th>Due Amount</th>
-            <td>{contract.dueAmount}</td>
-          </tr>
-          <tr>
-            <th>Paid Amount</th>
-            <td>{contract.paidAmount}</td>
-          </tr>
-          <tr>
-            <th>Amount Per Installment</th>
-            <td>{contract.amountPerInstallment}</td>
-          </tr>
-          <tr>
-            <th>Urubuto Payment Code</th>
-            <td>{contract.urubutoPayCode}</td>
-          </tr>
-          <tr>
-            <th>Email</th>
-            <td>{contract.email}</td>
-          </tr>
-          <tr>
-            <th>Sponsor Email</th>
-            <td>{contract.sponsorEmail}</td>
-          </tr>
-          <tr>
-            <th>Status</th>
-            <td>{contract.status}</td>
-          </tr>
-          <tr>
-            <th>Accountant Comments</th>
-            <td>{contract.comment}</td>
-          </tr>
-        </table>
+        <div className="detail-titles">
+          <p>Due Amount</p>
+          <p>Paid Amount</p>
+          <p>Amount Per Installment</p>
+          <p>Payment Code</p>
+          <p>Email</p>
+          <p>Sponsor Email</p>
+          <p>Status</p>
+          <p>Accountant comment</p>
+        </div>
+        <div className="detail-info">
+          <p className="detail-values">{contract.dueAmount}</p>
+          <p className="detail-values">{contract.paidAmount}</p>
+          <p className="detail-values">{contract.amountPerInstallment}</p>
+          <p className="detail-values">{contract.urubutoPayCode}</p>
+          <p className="detail-values">{contract.email}</p>
+          <p className="detail-values">{contract.sponsorEmail}</p>
+          <p className="detail-values">{contract.status}</p>
+          <p className="detail-values">{contract.comment}</p>
+        </div>
+      </div>
+      <div className='button-group'>
+        <Link className='details-back-btn' to={'/contracts'}>Back</Link>
       </div>
     </div>
   )

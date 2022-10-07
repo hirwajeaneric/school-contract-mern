@@ -2,27 +2,27 @@ var express = require('express');
 var router = express.Router();
 const { testing, 
     listCheckins, 
-    prepareCheckin, 
     findByRegNumber, 
     findByCheckinId, 
     update, 
     findById, 
     createCheckin, 
-    preparingUpdateData
+    preparingUpdateData,
+    createManyCheckins,
+    sendMail,
+    findByStatus,
+    findAllByStatus
 } = require('../controllers/checkins');
 
 router.get('/', testing);
-
 router.get('/list', listCheckins);
-
-router.post('/new', prepareCheckin, createCheckin);
-
+router.post('/new', createCheckin);
 router.get('/findByRegNumber', findByRegNumber);
-
-router.get('/findByCheckinId', findByCheckinId)
-
-router.get('/findById', findById)
-
-router.put('/update', preparingUpdateData, update)
+router.get('/findByCheckinId', findByCheckinId);
+router.get('/findByStatus', findByStatus);
+router.get('/findAllByStatus', findAllByStatus);
+router.get('/findById', findById);
+router.put('/update', preparingUpdateData, update, sendMail);
+router.post('/createthree/', createManyCheckins);
 
 module.exports = router;

@@ -6,26 +6,20 @@ const {testing,
     listContracts, 
     findByRegNumber, 
     findById, 
-    update, 
-    checkStatus
+    update,
+    newMiddleWare,
+    sendMail,
+    findByStatus,
+    findAllByStatus
 } = require('../controllers/contracts'); 
 
 router.get('/', testing);
-
 router.get('/list', listContracts);
-
-router.post('/new', gatherAllData ,createContract);
-
+router.post('/new', gatherAllData ,createContract, sendMail);
 router.get('/findByRegNumber', findByRegNumber);
-
+router.get('/findByStatus', findByStatus);
+router.get('/findAllByStatus', findAllByStatus);
 router.get('/findById', findById);
-
-router.put('/update', update, checkStatus);
-
-// router.put('/update', 
-//     update, 
-//     checkStatus, 
-//     checkinRoutes.post('/new', prepareCheckin, createCheckin)
-// );
+router.put('/update', update, newMiddleWare, sendMail);
 
 module.exports = router;

@@ -6,6 +6,7 @@ import './styles.css';
 function UpdateContract() {
 
   const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     urubutoPayCode:"",
     paidAmount: "",
@@ -18,6 +19,18 @@ function UpdateContract() {
     comment: ""
   });
 
+  const [returnedData, setReturnedData] = useState({
+    urubutoPayCode:"",
+    paidAmount: "",
+    dueAmount:"",
+    amountPerInstallment: "",
+    email:"",
+    sponsorEmail:"",    
+    status: "",
+    creationDate: "",
+    comment: ""
+  })
+
   const [error, setError] = useState("");
   
   const contractId = useParams();
@@ -25,7 +38,6 @@ function UpdateContract() {
   useEffect(()=>{
     axios.get(`http://localhost:8080/api/contracts/findById?id=${contractId.id}`)
     .then((res) => {
-      console.log(res.data);
       setFormData(res.data)
     })
     .catch(error => {
@@ -37,29 +49,28 @@ function UpdateContract() {
     setFormData({...formData, [input.name]: input.value});
   };  
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (formData.status === "Pending"){
       setError("Status must be updated!");
       return;
     } else {
-      try {
-        const url = `http://localhost:8080/api/contracts/update?id=${contractId.id}`;
-        const { data: res } = await axios.put(url, formData);
-        const contract = res;
-        if(contract)
-          navigate(`/contracts`);
-      } catch (error) {
-          if(
-              error.response &&
-              error.response.status >= 400 && 
-              error.response.status <= 500
-          ){
-              setError(error.response.data.message);
-          }
-      }
+      const url = `http://localhost:8080/api/contracts/update?id=${contractId.id}`;
+      
+      axios.put(url, formData)
+      .then((res) => {
+        setReturnedData(res.data)
+      })
+      .catch (error => {
+        if(error.response && error.response.status >= 400 && error.response.status <= 500){
+            setError(error.response.data.message);
+        }}
+      )
     }
-}
+
+    if(returnedData)
+      navigate(`/contracts`);
+  }
 
   return (
     <div className='form-container'>
