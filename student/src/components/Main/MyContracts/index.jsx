@@ -5,8 +5,7 @@ import StudentContractTable from './StudentContractTable';
 import './styles.css';
 
 const MyContracts = ()=> {
-  const [contracts, setContracts] = useState([])
-  // const [errors, setErrors] = useState("");
+  const [contracts, setContracts] = useState([]);
 
   useEffect(()=>{
     const regNo = localStorage.getItem("id");

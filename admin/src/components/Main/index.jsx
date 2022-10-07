@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Outlet } from 'react-router-dom';
-// import NotificationBar from './NotificationBar';
 import SideNavBar from './SideNavBar';
 import TopBar from './TopBar';
 import './styles.css';
-import axios from 'axios';
 
 const Main = () => {
   return (
@@ -18,10 +16,6 @@ const Main = () => {
       <div id='item3'>
         <Outlet />
       </div>
-      <div id='item4'>
-        {/* <NotificationBar /> */}
-      </div>
-      <div id='item5'></div>
     </div>
   )
 }

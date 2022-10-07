@@ -5,7 +5,6 @@ import './styles.css';
 
 const CheckinList = () => {
   const [checkins, setCheckins] = useState([])
-  // const [errors, setErrors] = useState("")
 
   useEffect(()=>{
     const regNo = localStorage.getItem("id");
