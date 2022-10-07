@@ -1,7 +1,7 @@
 import React from 'react';
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import { Box } from '@mui/material';
-import ViewTableAction from '../TableActions/ViewTableAction';
+import TableActions from '../TableActions/TableActions';
 
 const columns = [
     { field: '_id', 
@@ -46,7 +46,7 @@ const columns = [
         headerName: 'Actions',
         type: 'actions',
         width: 150,
-        renderCell: (params) => <ViewTableAction {...{params, path: 'contract'}} />
+        renderCell: (params) => <TableActions {...{params, viewPath: 'contract' ,editPath: 'update-contract'}} />
     },
 ]
 
