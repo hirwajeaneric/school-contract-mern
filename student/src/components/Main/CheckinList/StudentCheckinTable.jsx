@@ -15,8 +15,14 @@ const columns = [
         hide: true
     },
     {
-        field: 'creationDate',
-        headerName: 'Creation Date',
+        field: 'dueDate',
+        headerName: 'Due Date',
+        type: 'date',
+        width: 150,
+    },
+    {
+        field: 'submitDate',
+        headerName: 'Submit Date',
         type: 'date',
         width: 150,
     },
@@ -33,34 +39,29 @@ const columns = [
         width: 110,
     },
     {
-        field: 'amountPerInstallment',
-        headerName: 'Installment',
-        width: 100,
-    },
-    {
         field: 'status',
         headerName: 'Status',
-        width: 100,
+        width: 80,
     },
     {
         field: 'comment',
         headerName: 'Comment',
         type: 'number',
-        width: 350,
+        width: 310,
     },
     {
         field: 'actions',
         headerName: 'Actions',
         type: 'actions',
         width: 150,
-        renderCell: (params) => <ViewTableAction {...{params, path: 'contract'}} />
+        renderCell: (params) => <ViewTableAction {...{params, path: 'checkin'}} />
     },
 ]
 
 var rows = [];
 
-const StudentContractTable = ({contracts}) => {
-    rows = contracts;
+const StudentCheckinTable = ({checkins}) => {
+    rows = checkins;
     return (
         <Box sx={{height: 350, width:'100%'}}>
             <DataGrid 
@@ -76,4 +77,4 @@ const StudentContractTable = ({contracts}) => {
     );
 }
 
-export default StudentContractTable
+export default StudentCheckinTable
