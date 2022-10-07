@@ -1,9 +1,13 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import './styles.css';
+import StudentContractTable from './StudentContractTable';
+import StudentCheckinTable from './StudentCheckinTable';
 
 const Dashboard = () => {
 
+    const [contracts, setContrats] = useState([]);
+    const [checkins, setCheckins] = useState([]);
     const [numberOfContracts, setNumberOfContracts] = useState(0);
     const [installments, setInstallments] = useState(0);
     const [numberOfInstallments, setNumberOfInstallments] = useState(0);
@@ -78,7 +82,7 @@ const Dashboard = () => {
     <div className='dashboard-container'>
         <div className='title-headers'>
             <h1>Dashboard</h1>
-            <h3>Home</h3>
+            {/* <h3>Home</h3> */}
         </div>
         <div className='some-stats'>
             <div className='numberOfContracts'>
@@ -103,7 +107,16 @@ const Dashboard = () => {
             </div>
         </div>
         <div className="some-tables">
-            <h3 className='tables'>Contracts</h3>
+            <div className='dashboard-tables'>
+                <div className="contract-table-space">
+                    <h3 className='table-title'>Contracts</h3>
+                    <StudentContractTable contracts={contracts} />
+                </div>
+                <div className="checkin-table-space">
+                    <h3 className='table-title'>Checkins</h3>
+                    <StudentCheckinTable checkins={checkins} />
+                </div>
+            </div>
         </div>
     </div>
   )
