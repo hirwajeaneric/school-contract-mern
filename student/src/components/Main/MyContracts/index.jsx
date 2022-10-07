@@ -1,27 +1,25 @@
-import React, { useEffect, useContext, createContext } from 'react'
-import { Link, useLocation } from 'react-router-dom';
+import React, { useEffect } from 'react'
+import { Link } from 'react-router-dom';
 import './styles.css';
-import axios from 'axios';
 import { useState } from 'react';
-// import { MessageContext } from '../../../App';
+import StudentContractTable from './StudentContractTable';
+import axios from 'axios';
 
 const MyContracts = ()=> {
   const [contracts, setContracts] = useState([])
-  const [errors, setErrors] = useState("");
-  // const [responsetext, setResponsetext] = useState("");
-  
-  // const { state } = useLocation();
-  // setResponsetext(state.text);
+  // const [errors, setErrors] = useState("");
 
-  // console.log(state);
   useEffect(()=>{
     const regNo = localStorage.getItem("id");
     axios.get(`http://localhost:8080/api/contracts/findByRegNumber?regNumber=${regNo}`)
-    .then((res) => {
-      setContracts(res.data)
-    })
-    .catch(error => {
-      setErrors(error)
+      .then((res)=>{
+        res.data.forEach(contract => {
+          contract.id = contract._id;
+          setContracts(res.data);
+        });
+      })
+      .catch(error => {
+        console.log(error);
     })
   },[]);
 
@@ -31,14 +29,12 @@ const MyContracts = ()=> {
         <h1 className='titleText'>My Contracts</h1>
         <Link className='new_contract_link' to={'/new-contract'}>New</Link>
       </div>
-      {/* Success message */}
-      {/* {responsetext && 
-        (<div className='success_message_box'>
-          <p className='success_msg'>{responsetext}</p>
-        </div>)
-      } */}
       
       <div className='table-container'>
+        <StudentContractTable contracts={contracts} />
+      </div>
+
+      {/* <div className='table-container'>
         <table>
           <thead>
             <tr>
@@ -69,7 +65,7 @@ const MyContracts = ()=> {
             }
           </tbody>
         </table>
-      </div>
+      </div> */}
     </div>
   )
 }
