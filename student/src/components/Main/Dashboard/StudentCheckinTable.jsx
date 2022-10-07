@@ -11,32 +11,32 @@ const columns = [
     {
         field: 'regNumber',
         headerName: 'Registration Number',
-        width: 100,
+        width: 70,
         hide: true
     },
     {
         field: 'dueDate',
         headerName: 'Due Date',
         type: 'date',
-        width: 150,
+        width: 120,
     },
     {
         field: 'submitDate',
         headerName: 'Submit Date',
         type: 'date',
-        width: 150,
+        width: 120,
     },
     {
         field: 'dueAmount',
         headerName: 'Due Amount',
         type: 'number',
-        width: 100,
+        width: 70,
     },
     {
         field: 'paidAmount',
         headerName: 'Paid Amount',
         type: 'number',
-        width: 110,
+        width: 70,
     },
     {
         field: 'status',
@@ -44,16 +44,10 @@ const columns = [
         width: 80,
     },
     {
-        field: 'comment',
-        headerName: 'Comment',
-        type: 'number',
-        width: 310,
-    },
-    {
         field: 'actions',
         headerName: 'Actions',
         type: 'actions',
-        width: 150,
+        width: 50,
         renderCell: (params) => <ViewTableAction {...{params, path: 'checkin'}} />
     },
 ]

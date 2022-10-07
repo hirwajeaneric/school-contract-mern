@@ -6,7 +6,7 @@ import StudentCheckinTable from './StudentCheckinTable';
 
 const Dashboard = () => {
 
-    const [contracts, setContrats] = useState([]);
+    const [contracts, setContracts] = useState([]);
     const [checkins, setCheckins] = useState([]);
     const [numberOfContracts, setNumberOfContracts] = useState(0);
     const [installments, setInstallments] = useState(0);
@@ -19,7 +19,11 @@ const Dashboard = () => {
         const regNo = localStorage.getItem("id");
         axios.get(`http://localhost:8080/api/contracts/findByRegNumber?regNumber=${regNo}`)
         .then((res) => {
-            setNumberOfContracts(res.data.length)
+            setNumberOfContracts(res.data.length);
+            res.data.forEach(contract => {
+                contract.id = contract._id;
+                setContracts(res.data);
+            });
         })
         .catch(error => {
             console.log(error);
@@ -30,7 +34,11 @@ const Dashboard = () => {
         const regNo = localStorage.getItem("id");
         axios.get(`http://localhost:8080/api/checkin/findByRegNumber?regNumber=${regNo}`)
         .then((res) => {
-            setNumberOfInstallments(res.data.length)
+            setNumberOfInstallments(res.data.length);
+            res.data.forEach(checkin => {
+                checkin.id = checkin._id;
+                setCheckins(res.data);
+            });
         })
         .catch(error => {
             console.log(error);

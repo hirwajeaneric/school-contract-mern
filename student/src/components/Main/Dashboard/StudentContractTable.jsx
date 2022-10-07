@@ -11,48 +11,42 @@ const columns = [
     {
         field: 'regNumber',
         headerName: 'Registration Number',
-        width: 100,
+        width: 80,
         hide: true
     },
     {
         field: 'creationDate',
         headerName: 'Creation Date',
         type: 'date',
-        width: 150,
+        width: 120,
     },
     {
         field: 'dueAmount',
         headerName: 'Due Amount',
         type: 'number',
-        width: 100,
+        width: 80,
     },
     {
         field: 'paidAmount',
         headerName: 'Paid Amount',
         type: 'number',
-        width: 110,
+        width: 80,
     },
     {
         field: 'amountPerInstallment',
         headerName: 'Installment',
-        width: 100,
+        width: 80,
     },
     {
         field: 'status',
         headerName: 'Status',
-        width: 100,
-    },
-    {
-        field: 'comment',
-        headerName: 'Comment',
-        type: 'number',
-        width: 350,
+        width: 80,
     },
     {
         field: 'actions',
         headerName: 'Actions',
         type: 'actions',
-        width: 150,
+        width: 50,
         renderCell: (params) => <ViewTableAction {...{params, path: 'contract'}} />
     },
 ]
