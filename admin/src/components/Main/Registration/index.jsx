@@ -1,22 +1,23 @@
 import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom';
 import './styles.css';
 import axios from 'axios';
 import { useState } from 'react';
+import RegistrationTable from './RegistrationTable';
 
 const Registration = ()=> {
-  const [registration, setRegistration] = useState([])
-  const [errors, setErrors] = useState("")
+  const [registration, setRegistration] = useState([]);
 
   useEffect(()=>{
     axios.get(`http://localhost:8080/api/registration/list`)
     .then((res) => {
-      console.log(res.data);
-      setRegistration(res.data)
+      res.data.forEach(registration => {
+        registration.id = registration._id;
+        setRegistration(res.data)
+      });
     })
     .catch(error => {
-      setErrors(error)
-    })
+      console.log(error);
+    });
   },[]);
 
   return (
@@ -25,28 +26,7 @@ const Registration = ()=> {
         <h1 className='titleText'>Registration Info</h1>
       </div>
       <div className='table-container'>
-        <table className='list-contract-table'>
-          <thead>
-            <tr>
-                <th>Reg Number</th>
-                <th>Name</th>
-                <th>Due Amount</th>
-                <th>Number of Courses</th>
-            </tr>
-          </thead>
-          <tbody>
-            {
-              registration ? registration.map(aregistration=>(
-                <tr key={aregistration._id}>
-                  <td>{aregistration.regNumber}</td>
-                  <td>{aregistration.name}</td>
-                  <td>{aregistration.dueAmount}</td>
-                  <td>{aregistration.numberOfCourses}</td>
-                </tr>
-              )): errors
-            }
-          </tbody>
-        </table>
+        <RegistrationTable registration={registration} />    
       </div>
     </div>
   )

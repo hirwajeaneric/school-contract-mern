@@ -1,7 +1,6 @@
 import React from 'react';
 import { DataGrid, GridToolbar, GridToolbarContainer, GridToolbarExport } from '@mui/x-data-grid';
 import { Box } from '@mui/material';
-import TableActions from '../TableActions/TableActions';
 
 const columns = [
     { field: '_id', 
@@ -11,44 +10,26 @@ const columns = [
     {
         field: 'regNumber',
         headerName: 'Registration Number',
-        width: 150,
+        width: 230,
     },
     {
-        field: 'dueDate',
-        headerName: 'Due Date',
+        field: 'name',
+        headerName: 'Name',
         type: 'date',
-        width: 200,
-    },
-    {
-        field: 'submitDate',
-        headerName: 'Submit Date',
-        type: 'date',
-        width: 200,
+        width: 300,
     },
     {
         field: 'dueAmount',
         headerName: 'Due Amount',
         type: 'number',
-        width: 110,
+        width: 230,
     },
     {
-        field: 'paidAmount',
-        headerName: 'Paid Amount',
+        field: 'numberOfCourses',
+        headerName: 'Number of Courses',
         type: 'number',
-        width: 110,
-    },
-    {
-        field: 'status',
-        headerName: 'Status',
-        width: 80,
-    },
-    {
-        field: 'actions',
-        headerName: 'Actions',
-        type: 'actions',
-        width: 120,
-        renderCell: (params) => <TableActions {...{params, viewPath: 'checkin' ,editPath: 'update-checkin'}} />
-    },
+        width: 220,
+    }
 ]
 
 function CustomToolbar() {
@@ -61,8 +42,8 @@ function CustomToolbar() {
 
 var rows = [];
 
-const StudentCheckinTable = ({checkins}) => {
-    rows = checkins;
+const RegistrationTable = ({registration}) => {
+    rows = registration;
     return (
         <Box sx={{height: 350, width:'100%'}}>
             <DataGrid 
@@ -78,4 +59,4 @@ const StudentCheckinTable = ({checkins}) => {
     );
 }
 
-export default StudentCheckinTable
+export default RegistrationTable
