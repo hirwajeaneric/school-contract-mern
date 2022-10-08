@@ -1,6 +1,7 @@
 const checkinModel = require('../models/checkin');
 const validate = require('../services/validateCheckins');
 const {mailForCheckins} = require('../services/mailForCheckins');
+const { scheduler } = require('../services/scheduler');
 
 exports.testing = (req, res, next) => {
     res.send('Checkin Router works perfectly...');    
@@ -162,5 +163,7 @@ exports.update = (req, res, next) => {
 
 exports.sendMail = (req, res, next) => {
     const checkinData = req.body;
+    //Before sending an email, first update the schedules.
+    scheduler();
     mailForCheckins(checkinData);
   }
