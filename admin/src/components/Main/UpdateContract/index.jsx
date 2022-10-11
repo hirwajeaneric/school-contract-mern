@@ -1,12 +1,14 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom';
+import { ServerResponseContextSetter } from '../../../App';
 import './styles.css';
 
 function UpdateContract() {
 
-  const navigate = useNavigate();
+  const serverResponseSetter = useContext(ServerResponseContextSetter);
 
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     urubutoPayCode:"",
     paidAmount: "",
@@ -68,8 +70,10 @@ function UpdateContract() {
       )
     }
 
-    if(returnedData)
+    if(returnedData){
+      serverResponseSetter({message: 'Contract Updated', visible: true})
       navigate(`/contracts`);
+    }
   }
 
   return (

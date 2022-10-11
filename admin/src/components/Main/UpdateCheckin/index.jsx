@@ -1,9 +1,12 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom';
+import { ServerResponseContextSetter } from '../../../App';
 import './styles.css';
 
 const UpdateCheckin = () => {
+  const serverResponseSetter = useContext(ServerResponseContextSetter);
+  
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     regNumber: "",
@@ -47,8 +50,10 @@ const UpdateCheckin = () => {
         const url = `http://localhost:8080/api/checkin/update?id=${checkinId.id}`;
         const { data: res } = await axios.put(url, formData);
         const checkin = res;
-        if(checkin)
+        if(checkin){
+          serverResponseSetter({message: 'Installment Updated', visible: true})
           navigate(`/checkins`);
+        }
       } catch (error) {
         if(error.response && error.response.status >= 400 && error.response.status <= 500) {
           setError(error.response.data.message);

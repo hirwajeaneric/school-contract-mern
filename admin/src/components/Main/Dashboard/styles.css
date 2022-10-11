@@ -71,6 +71,6 @@
     color: black !important;
 }
 
-.contract-table-space, .checkin-table-space {
+.contract-chart-space, .checkin-table-space, .contract-table-space {
     width: 48%;
 }
