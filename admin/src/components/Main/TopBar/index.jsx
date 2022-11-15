@@ -4,10 +4,11 @@ import auca_icon from '../../../Assets/Img/iconLogo.png';
 
 const TopBar = () => {
     
-    const userName = localStorage.getItem('username');
+    const userName = localStorage.getItem('accUsername');
 
     const handleLogout = ()=>{
-        localStorage.removeItem("token");
+        localStorage.removeItem("accToken");
+        localStorage.removeItem("accUsername");
         window.location.reload();
     }
 

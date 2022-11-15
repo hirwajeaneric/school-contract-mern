@@ -25,8 +25,6 @@ const CheckinList = () => {
     })
   },[]);
 
-  console.log(serverResponse);
-
   if(serverResponse.visible) {
     setTimeout(() => {
       serverResponse.visible = false;

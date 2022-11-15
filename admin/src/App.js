@@ -21,7 +21,7 @@ function App() {
     visible: false
   });
 
-  const user = localStorage.getItem('token')
+  const user = localStorage.getItem('accToken')
   return (
     <ServerResponseContext.Provider value={serverResponse}>
       <ServerResponseContextSetter.Provider value={setServerResponse}>
