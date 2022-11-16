@@ -21,8 +21,8 @@ const Login = () => {
         try {
             const url = "http://localhost:8080/admin/login";
             const { data: res } = await axios.post(url, data);
-            localStorage.setItem('token', res.data);
-            localStorage.setItem('username', res.username);
+            localStorage.setItem('accToken', res.data);
+            localStorage.setItem('accUsername', res.username);
             window.location = "/"
         } catch (error) {
             if(

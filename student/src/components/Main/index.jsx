@@ -6,6 +6,7 @@ import './styles.css';
 import axios from 'axios';
 
 const Main = () => {
+  
   useEffect(()=>{;
     const yourRegNumber = localStorage.getItem('id');
     axios.get(`http://localhost:8080/api/registration/searchByRegistrationNumber?regNumber=${yourRegNumber}`)

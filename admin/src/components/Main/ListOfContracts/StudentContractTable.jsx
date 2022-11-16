@@ -1,7 +1,7 @@
 import React from 'react';
-import { DataGrid, GridToolbar } from '@mui/x-data-grid';
+import { DataGrid, GridToolbar, GridToolbarContainer, GridToolbarExport } from '@mui/x-data-grid';
 import { Box } from '@mui/material';
-import ViewTableAction from '../TableActions/ViewTableAction';
+import TableActions from '../TableActions/TableActions';
 
 const columns = [
     { field: '_id', 
@@ -17,24 +17,24 @@ const columns = [
         field: 'creationDate',
         headerName: 'Creation Date',
         type: 'date',
-        width: 150,
+        width: 200,
     },
     {
         field: 'dueAmount',
         headerName: 'Due Amount',
         type: 'number',
-        width: 100,
+        width: 150,
     },
     {
         field: 'paidAmount',
         headerName: 'Paid Amount',
         type: 'number',
-        width: 110,
+        width: 150,
     },
     {
         field: 'amountPerInstallment',
         headerName: 'Installment',
-        width: 100,
+        width: 150,
     },
     {
         field: 'status',
@@ -46,9 +46,17 @@ const columns = [
         headerName: 'Actions',
         type: 'actions',
         width: 150,
-        renderCell: (params) => <ViewTableAction {...{params, path: 'contract'}} />
+        renderCell: (params) => <TableActions {...{params, viewPath: 'contract' ,editPath: 'update-contract'}} />
     },
 ]
+
+function CustomToolbar() {
+    return (
+      <GridToolbarContainer>
+        <GridToolbarExport />
+      </GridToolbarContainer>
+    );
+}
 
 var rows = [];
 
@@ -63,7 +71,7 @@ const StudentContractTable = ({contracts}) => {
                 rowsPerPageOptions={[5]}
                 disableSelectionOnClick
                 experimentalFeatures={{newEditingApi: true}}
-                components={{Toolbar: GridToolbar}}
+                components={{Toolbar: CustomToolbar}}
             />
         </Box>
     );

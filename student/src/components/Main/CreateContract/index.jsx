@@ -1,10 +1,11 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
+import { ServerResponseContextSetter } from '../../../App';
 import './styles.css';
 
 function CreateContract() {
-
+  const serverResponseSetter = useContext(ServerResponseContextSetter);
   const navigate = useNavigate();
   const [formData, setFormData] = useState({});
   const [error, setError] = useState("");
@@ -44,6 +45,9 @@ function CreateContract() {
     } else if(formData.urubutoPayCode===""){
       setError("The code of your payment is required!");
       return;
+    } else if(formData.urubutoPayCode.length!==12){
+      setError("Invalid payment code!");
+      return;
     } else if(formData.email==="" || formData.email.length < 5) {
       setError("Your email address is required!");
       return;
@@ -55,9 +59,10 @@ function CreateContract() {
         const url = "http://localhost:8080/api/contracts/new";
         const { data: res } = await axios.post(url, formData);
         const contract = res;
-        if(contract)
-          // navigate(`/contracts`, {replace: false, state: {text: "Contract Created!"}});
-          navigate(`/success`);
+        if(contract){
+          serverResponseSetter({message:'Contract Submitted!!', visible: true});
+          navigate(`/contracts`);
+        }
       } catch (error) {
           if(
               error.response &&

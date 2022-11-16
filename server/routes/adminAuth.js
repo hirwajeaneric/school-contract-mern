@@ -26,7 +26,10 @@ router.post('/', async(req, res)=> {
         
         //When the admin is right, we send a token    
         const token = admin.generateAuthToken();
-        res.status(200).send({data: token, message: "Logged in Successfully"})    
+        res.status(200).send({
+            data: token, 
+            username: admin.username    
+        })    
         
     } catch (error) {
         res.status(500).send({message: "Internal Server Error"})

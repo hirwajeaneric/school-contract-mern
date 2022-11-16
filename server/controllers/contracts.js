@@ -3,6 +3,7 @@ const validate = require('../services/validateContracts');
 const newCheckin = require('../routes/newCheckin');
 const { createCheckins } = require('../services/createCheckins');
 const { mailForContracts } = require('../services/mailForContracts');
+const { scheduler } = require('../services/scheduler');
 
 exports.testing = (req, res, next) => {
   res.send('Contract Router works very well.');
@@ -134,11 +135,11 @@ exports.update = (req, res, next) => {
 
 exports.newMiddleWare = (req, res, next) => {
   if(req.body.status ==="Approved"){
-    console.log("It is approved!");
     const contractData = req.body;
     createCheckins(contractData);
+    scheduler();
   }else {
-    console.log("It is rejected!");
+    scheduler();
   }
   next();
 }

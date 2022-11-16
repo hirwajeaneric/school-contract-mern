@@ -10,7 +10,7 @@ const SideNavBar = () => {
           <Link to='contracts' className={styles.link}>Contracts</Link>
           <Link to='checkins' className={styles.link}>Installments</Link>
           <Link to='registration' className={styles.link}>Registration</Link>
-          <Link to='users' className={styles.link}>Users</Link>
+          {/* <Link to='users' className={styles.link}>Users</Link> */}
         </div>
     </div>
   )

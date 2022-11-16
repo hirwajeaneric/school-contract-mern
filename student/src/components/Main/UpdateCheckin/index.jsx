@@ -1,9 +1,12 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom';
+import { ServerResponseContextSetter } from '../../../App';
 import './styles.css';
 
 const UpdateCheckin = () => {  
+
+  const serverResponseSetter = useContext(ServerResponseContextSetter);
 
   const navigate = useNavigate();
   const[checkinData, setCheckinData] = useState({
@@ -26,7 +29,6 @@ const UpdateCheckin = () => {
   useEffect(()=>{
     axios.get(`http://localhost:8080/api/checkin/findById?id=${checkinId.id}`)
     .then((res) => {
-      console.log(res.data);
       setCheckinData(res.data)
     })
     .catch(error => {
@@ -49,10 +51,10 @@ const UpdateCheckin = () => {
       setErrors("Unacceptable amount entered");
       return;
     } else if (checkinData.urubutoPayCode === "") {
-      setErrors("Urubuto code is required!");
+      setErrors("Payment code is required!");
       return;
-    } else if (checkinData.urubutoPayCode.length < 10 || checkinData.urubutoPayCode.length > 10) {
-      setErrors("Invalid Code!");
+    } else if (checkinData.urubutoPayCode.length !== 12) {
+      setErrors("Invalid payment code!");
       return;
     } else {
       try {
@@ -60,6 +62,7 @@ const UpdateCheckin = () => {
         const { data: res } = await axios.put(url, checkinData);
         const checkin = res;
         if(checkin) {
+          serverResponseSetter({message: 'Installment Updated', visible: true})
           navigate(`/checkins`);  
         }
       } catch (error) {
