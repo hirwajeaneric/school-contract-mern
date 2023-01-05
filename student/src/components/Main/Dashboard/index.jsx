@@ -121,7 +121,7 @@ const Dashboard = () => {
                     <StudentContractTable contracts={contracts} />
                 </div>
                 <div className="checkin-table-space">
-                    <h3 className='table-title'>Checkins</h3>
+                    <h3 className='table-title'>Installments</h3>
                     <StudentCheckinTable checkins={checkins} />
                 </div>
             </div>

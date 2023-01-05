@@ -11,6 +11,7 @@ import ContractDetails from "./components/Main/ContractDetails";
 import CheckinDetails from "./components/Main/CheckinDetails";
 import Registration from "./components/Main/Registration";
 import Dashboard from "./components/Main/Dashboard";
+import Settings from './components/Main/Settings/Settings';
 
 export const ServerResponseContext = createContext();
 export const ServerResponseContextSetter = createContext();
@@ -35,7 +36,8 @@ function App() {
             <Route path="checkins/" element={<CheckinList />} />
             <Route path="checkin/:id" element={<CheckinDetails />} />
             <Route path="update-checkin/:id" element={<UpdateCheckin />} />
-            <Route path="registration" element={<Registration />} />
+            <Route path="registration/" element={<Registration />} />
+            <Route path="settings/" element={<Settings/>} />
           </Route>
           }
           <Route path="signup" exact element={<Signup />} />
@@ -49,6 +51,7 @@ function App() {
           <Route path="contract/:id" exact element={<Navigate replace to="/login" />} />
           <Route path="/update-checkin/:id" exact element={<Navigate replace to="/login" />} />
           <Route path="registration" exact element={<Navigate replace to="/login" />} />
+          <Route path="settings" exact element={<Navigate replace to="/login" />} />
         </Routes>
       </ServerResponseContextSetter.Provider>
     </ServerResponseContext.Provider>

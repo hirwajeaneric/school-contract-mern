@@ -7,96 +7,175 @@
 	margin-top: 20px;
 }
  
-.listofcontracts,
-.titlebar {
+.content_container {
 	display: flex;
 	flex-direction: row;
-	align-items: center;
-}
-
-.titlebar {
-	width: 100%;
+	flex-wrap: wrap;
 	justify-content: space-between;
+	align-items: flex-start;
+	width: 100%;
+	margin-top: 10px;
 }
 
-.titleText {
-	font-weight: 900;
+.settings_list {
+	width: 45%;
+	background-color: rgb(226, 226, 226);
+	overflow-y: scroll;
+	height: 400px;
 }
 
-.success_message_box {
-	margin: 10px 0;
+.setting_form {
+	height: 100%;
+	width: 45%;
+	background-color: white;
 }
 
-.success_msg {
+h3 {
+	background-color: white !important;
+	color: black !important;
+	border: none !important;
+	text-align: left !important;
+	padding: 0 0 20px !important;
+}
+
+.a_setting {
+	background: whitesmoke;
+	padding: 5px 20px;
+	font-size: 90%;
+	margin: 0 0 5px;
+	border-top: 1px solid rgb(165, 165, 165);
+}
+
+.a_setting:hover {
+	background: rgb(255, 255, 255);
+}
+
+.modificaiton_buttons {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	justify-content: space-evenly;
+	width: 5%;
+}
+
+.modificaiton_buttons button {
+	background-color: transparent;
+	padding: 0;
+	margin: 0;
+	color: black;
+	font-size: 16px;
+	cursor: pointer;
+}
+
+.modificaiton_buttons button:hover {
+	color: rgb(255, 162, 0);
+}
+
+.data {
+	display: flex;
+	flex-direction: row;
+}
+
+.a_setting .s_left, .a_setting .s_right {
+	width: 45%;
+}
+
+.a_setting .s_left p span,  
+.a_setting .s_right p span {
+	display: block;
+	font-size: 85%;
+	color: gray;
+}
+
+.a_setting .s_left p, 
+.a_setting .s_right p {
+	margin: 0 0 5px;
+}
+
+.setting_form {
+	height: 100%;
+
+}
+
+.input_container {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: flex-start;
+	margin-bottom: 10px;
+}
+
+.input_container label {
+	font-size: 90%;
+	color: gray;	
+	margin-bottom: 5px;
+}
+
+.input_container input, 
+.input_container select {
 	width: 100%;
 	padding: 5px;
-	margin: 5px 0 10px;
-	font-size: 14px;
-	background-color: #90ff9a;
-	border: 1px solid rgb(42, 184, 68);
-	color: rgb(37, 159, 60);
-	border-radius: 5px;
-	text-align: center;
-}
-
-.new_contract_link {
-	text-decoration: none;
-	padding: 8px 20px;
-	background-color: rgb(74, 222, 74);
-	color: white;
-	text-align: center;
-	border-radius: 5px;
-	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
-}
-
-.new_contract_link:hover {
-	background-color: rgb(0, 134, 196);
-}
-
-.listofcontracts {
-	padding: 20px;
-	justify-content: flex-start;
-}
-
-.acontract {
-	padding: 10px;
-	background-color: white;
+	border: 1px solid gray;
+	font-size: 90%;
 	color: black;
+	border-radius: 2px !important;
+}
+
+.input_error {
+	font-size: 90%;
+	color: tomato;
+}
+
+.command_buttons {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 20px;
+}
+
+.command_buttons input,
+.command_buttons button {
+	color: white;
+	border-radius: 2px !important;
+	border: none;
+	padding: 8px 12px !important;
+	width: 100px !important;
+	font-weight: 700;
+	margin: 0 !important;
+}
+
+.command_buttons input:hover,
+.command_buttons button:hover {
+	color: white;
+	background-color: orange;
+}
+
+.command_buttons input {
+	background-color: rgb(0, 0, 66);
+}
+
+.command_buttons button {
+	background-color: rgb(0, 0, 0);
+}
+
+.otherError,
+.successMessage {
+	padding: 8px 12px;
+	text-align: center;
 	margin-bottom: 20px;
 	font-size: 90%;
 }
 
-.table-container {
-	margin-top: 20px;
-	width: 100%;
-	display: flex;
-	align-items: flex-start;
-	flex-direction: row;
-	overflow-y: scroll;
+.otherError {
+	background-color: white;
+	color: tomato;
+	border: 1px solid tomato;
 }
 
-.view-link {
-	text-decoration: none;
-	color: white;
-	background-color: green;
-	font-size: 80%;
-	padding: 5px 10px;
-	border-radius: 5px;
+.successMessage {
+	background-color: white;
+	color: green;
+	border: 1px solid green;
 }
 
-.view-link:hover {
-	background-color: rgb(2, 63, 2);
-}
-
-.update-link {
-	text-decoration: none;
-	color: white;
-	background-color: rgb(0, 64, 128);
-	font-size: 80%;
-	padding: 5px 10px;
-	border-radius: 5px;
-}
-
-.update-link:hover {
-	background-color: rgb(0, 98, 189);
-}
