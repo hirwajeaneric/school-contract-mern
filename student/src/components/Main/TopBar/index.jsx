@@ -8,12 +8,14 @@ const TopBar = () => {
     const id = localStorage.getItem('id');
 
     const handleLogout = ()=>{
+        localStorage.removeItem("token");
         localStorage.removeItem("semester");
         localStorage.removeItem("numberOfCourses");
         localStorage.removeItem("rate");
         localStorage.removeItem("academicYear");
         localStorage.removeItem("id");
         localStorage.removeItem("dueAmount");
+        localStorage.removeItem("name");
         window.location.reload();
     }
 
