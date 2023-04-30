@@ -1,9 +1,9 @@
 .navigation_container,
-.navigation_links {
+.navigation_NavLinks {
 	display: flex;
 	flex-direction: column;
 	flex-wrap: wrap;
-	align-items: center;
+	justify-content: flex-start;
 }
 
 .navigation_container {
@@ -12,11 +12,11 @@
 	height: 100%;
 	border-right: 1px solid rgb(186, 186, 186);
 	left: 0;
-	padding-top: 50px;
+	padding: 50px 10px;
 
 }
 
-.link {
+.NavLink {
     text-align: left;
     text-decoration: none;
 	color: #002a61;
@@ -24,6 +24,11 @@
 	padding: 8px 12px;
 }
 
-.link:hover {
+.NavLink:hover {
 	border-bottom: 2px solid orange;
+}
+
+.active {
+	border-bottom: 2px solid orange;
+	background-color: rgb(212, 212, 212);
 }

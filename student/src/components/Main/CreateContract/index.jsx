@@ -9,12 +9,12 @@ function CreateContract() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({});
   const [error, setError] = useState("");
-  
+
   useEffect(()=>{
     const presetData = {
       regNumber: localStorage.getItem('id'),
       name: localStorage.getItem('name'),
-      dueAmount: localStorage.getItem("dueAmount")
+      dueAmount: localStorage.getItem("dueAmount"),
     }
 
     const contractData = {
@@ -41,6 +41,9 @@ function CreateContract() {
     e.preventDefault();
     if (formData.paidAmount === 0 || formData.paidAmount === ""){
       setError("Paid amount is required!");
+      return;
+    } else if (formData.paidAmount < formData.dueAmount*localStorage.getItem('rate')/100){
+      setError(`Paid amount is bellow accepted rate of ${localStorage.getItem('rate')}%!`);
       return;
     } else if(formData.urubutoPayCode===""){
       setError("The code of your payment is required!");
@@ -158,7 +161,7 @@ function CreateContract() {
               <button type='submit' className='submit-btn'>Submit</button>
             </td>
             <td className='cancel-btn-container'>
-              <Link className='cancel-btn' to={'/contracts'}>Cancel</Link>
+              <Link className='cancel-btn' style={{background: 'black', color: 'white'}} to={'/contracts'}>Cancel</Link>
             </td>
           </tr>
           </tbody>

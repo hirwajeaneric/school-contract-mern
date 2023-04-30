@@ -18,6 +18,28 @@ exports.listRegistration = (req,res,next)=>{
       })
 }
 
+exports.searchByIdSemesterAcademicYear = (req, res, next)=>{
+  const registrationNumberQuery = req.query.regNumber;
+  const semesterQuery = req.query.semester;
+  const academicYearQUery = req.query.academicYear;
+  
+  Registration.findOne({
+    regNumber: registrationNumberQuery,
+    semester: semesterQuery,
+    academicYear: academicYearQUery
+  })
+  .then(response=> {
+      if (response) {
+        res.status(200).send(response)
+      } else {
+        res.status(404).send("You have not registered for any course yet!")
+      }
+  })
+  .catch(err=>{
+      res.status(500).send("Server error: "+err)
+  })
+}
+
 exports.searchByRegistrationNumber = (req, res, next)=>{
     const registrationNumberQuery = req.query.regNumber;
     Registration.findOne({regNumber: registrationNumberQuery})
